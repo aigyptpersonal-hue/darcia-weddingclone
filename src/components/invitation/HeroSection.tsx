@@ -48,9 +48,9 @@ const HeroSection = ({ guestName }: HeroSectionProps) => {
 
             {/* NAMA MEMPELAI & AMPERSAND */}
             <h1 className="text-[3.8rem] leading-[1] text-[#3A5A40] drop-shadow-sm flex flex-col items-center mt-2" style={{ fontFamily: "'Sinera', serif" }}>
-              <span className="block">{couple.bride.shortName}</span>
-              <span className="text-4xl my-[-5px]" style={{ fontFamily: "'Sinera', serif" }}>&</span>
               <span className="block">{couple.groom.shortName}</span>
+              <span className="text-4xl my-[-5px]" style={{ fontFamily: "'Sinera', serif" }}>&</span>
+              <span className="block">{couple.bride.shortName}</span>
             </h1>
         </motion.div>
       </div>
