@@ -3,7 +3,7 @@ import { invitationData } from "../../data/invitationData";
 import coverBg from "../../assets/1235.png"; 
 
 interface HeroSectionProps {
-  guestName?: string;
+  guestName?: string; // Prop ini biarin aja biar gak error di parent, meski gak dipake visualnya
 }
 
 const HeroSection = ({ guestName }: HeroSectionProps) => {
@@ -47,7 +47,7 @@ const HeroSection = ({ guestName }: HeroSectionProps) => {
               the wedding of
             </p>
 
-            {/* NAMA MEMPELAI & AMPERSAND (SINERA) */}
+            {/* NAMA MEMPELAI & AMPERSAND */}
             <h1 className="text-[3.8rem] leading-[1] text-[#3A5A40] drop-shadow-sm flex flex-col items-center mt-2" style={{ fontFamily: "'Sinera', serif" }}>
               <span className="block">{couple.bride.shortName}</span>
               <span className="text-4xl my-[-5px]" style={{ fontFamily: "'Sinera', serif" }}>&</span>
@@ -59,25 +59,43 @@ const HeroSection = ({ guestName }: HeroSectionProps) => {
       {/* --- SPACER TENGAH --- */}
       <div className="flex-grow"></div>
 
-      {/* --- BOTTOM CONTENT (Greeting Tamu) --- */}
-      {/* pb-16: Ini kuncinya biar dia turun mendekati bawah layar */}
-      <div className="relative z-10 w-full pb-16 px-6 flex flex-col items-center text-center">
+      {/* --- BOTTOM CONTENT (SCROLL INDICATOR) --- */}
+      <div className="relative z-10 w-full pb-10 flex flex-col items-center justify-end">
           
-          <motion.div
-              className="w-full flex flex-col items-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+          <motion.div 
+            className="flex flex-col items-center gap-2 cursor-default"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.8 }}
           >
-              <p className="text-xs text-[#3A5A40] mb-1 font-medium tracking-widest uppercase opacity-80">
-                  Kepada Yth.
-              </p>
-              
-              {/* NAMA TAMU */}
-              <h3 className="font-bold text-xl md:text-2xl text-[#3A5A40] capitalize tracking-wide" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.8)' }}>
-                  {guestName || "Tamu Undangan"}
-              </h3>
+            {/* Mouse Icon Animation */}
+            <div className="w-[24px] h-[36px] border-[1.5px] border-[#3A5A40] rounded-full flex justify-center pt-2 opacity-80">
+              <motion.div 
+                className="w-1 h-1.5 bg-[#3A5A40] rounded-full"
+                animate={{ y: [0, 8, 0], opacity: [1, 0.5, 1] }}
+                transition={{ 
+                  duration: 1.5, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+              />
+            </div>
+
+            {/* Text Scroll Down */}
+            <motion.p 
+              className="text-[9px] tracking-[0.25em] uppercase text-[#3A5A40] font-medium opacity-70"
+              animate={{ y: [0, 3, 0] }}
+              transition={{ 
+                duration: 1.5, 
+                repeat: Infinity, 
+                ease: "easeInOut",
+                delay: 0.2 // Biar geraknya agak telat dikit dari mouse
+              }}
+            >
+              Scroll Down
+            </motion.p>
           </motion.div>
+
       </div>
 
     </section>
