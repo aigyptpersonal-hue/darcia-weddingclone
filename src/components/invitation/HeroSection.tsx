@@ -42,18 +42,15 @@ const HeroSection = ({ guestName }: HeroSectionProps) => {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="flex flex-col items-center w-full"
         >
-            {/* THE WEDDING OF (South Paris) */}
+            {/* THE WEDDING OF */}
             <p className="text-3xl text-[#3A5A40] -mb-2 z-10 transform -rotate-3 relative" style={{ fontFamily: "'South Paris', cursive" }}>
               the wedding of
             </p>
 
-            {/* NAMA MEMPELAI (Sinera) */}
+            {/* NAMA MEMPELAI & AMPERSAND (SINERA) */}
             <h1 className="text-[3.8rem] leading-[1] text-[#3A5A40] drop-shadow-sm flex flex-col items-center mt-2" style={{ fontFamily: "'Sinera', serif" }}>
               <span className="block">{couple.bride.shortName}</span>
-              
-              {/* AMPERSAND (&) - SEKARANG PAKE SINERA */}
               <span className="text-4xl my-[-5px]" style={{ fontFamily: "'Sinera', serif" }}>&</span>
-              
               <span className="block">{couple.groom.shortName}</span>
             </h1>
         </motion.div>
@@ -63,7 +60,8 @@ const HeroSection = ({ guestName }: HeroSectionProps) => {
       <div className="flex-grow"></div>
 
       {/* --- BOTTOM CONTENT (Greeting Tamu) --- */}
-      <div className="relative z-10 w-full pb-48 px-6 flex flex-col items-center text-center">
+      {/* pb-16: Ini kuncinya biar dia turun mendekati bawah layar */}
+      <div className="relative z-10 w-full pb-16 px-6 flex flex-col items-center text-center">
           
           <motion.div
               className="w-full flex flex-col items-center"
