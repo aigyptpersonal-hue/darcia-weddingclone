@@ -19,17 +19,16 @@ const HeroSection = ({ guestName }: HeroSectionProps) => {
           alt="Wedding Background"
           className="w-full h-full object-cover object-center"
         />
-        {/* Gradient Putih di bawah biar teks tamu kebaca jelas di atas lantai/tanah */}
-        <div className="absolute bottom-0 left-0 w-full h-[35vh] bg-gradient-to-t from-[#F9F7F2] via-[#F9F7F2]/90 to-transparent" />
+        {/* Gradient Putih di bawah */}
+        <div className="absolute bottom-0 left-0 w-full h-[40vh] bg-gradient-to-t from-[#F9F7F2] via-[#F9F7F2]/90 to-transparent" />
       </div>
 
       {/* --- TOP CONTENT (JUDUL) --- */}
-      {/* pt-32: Jarak dari atas layar biar judul agak turun */}
-      <div className="relative z-10 w-full pt-32 px-4 flex flex-col items-center text-center">
+      <div className="relative z-10 w-full pt-24 px-4 flex flex-col items-center text-center">
         
         {/* TEXT KECIL */}
         <motion.p
-          className="text-[10px] tracking-[0.25em] uppercase text-[#3A5A40] font-medium mb-3"
+          className="text-[10px] tracking-[0.25em] uppercase text-[#3A5A40] font-medium mb-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -43,15 +42,18 @@ const HeroSection = ({ guestName }: HeroSectionProps) => {
           transition={{ delay: 0.2, duration: 0.8 }}
           className="flex flex-col items-center w-full"
         >
-            {/* FONT SOUTH PARIS */}
-            <p className="text-3xl text-[#3A5A40] -mb-4 z-10 transform -rotate-3 relative" style={{ fontFamily: "'South Paris', cursive" }}>
+            {/* THE WEDDING OF (South Paris) */}
+            <p className="text-3xl text-[#3A5A40] -mb-2 z-10 transform -rotate-3 relative" style={{ fontFamily: "'South Paris', cursive" }}>
               the wedding of
             </p>
 
-            {/* NAMA MEMPELAI (SINERA) */}
+            {/* NAMA MEMPELAI (Sinera) */}
             <h1 className="text-[3.8rem] leading-[1] text-[#3A5A40] drop-shadow-sm flex flex-col items-center mt-2" style={{ fontFamily: "'Sinera', serif" }}>
               <span className="block">{couple.bride.shortName}</span>
-              <span className="text-2xl my-[-5px]" style={{ fontFamily: "'South Paris', cursive" }}>&</span>
+              
+              {/* AMPERSAND (&) - SEKARANG PAKE SINERA */}
+              <span className="text-4xl my-[-5px]" style={{ fontFamily: "'Sinera', serif" }}>&</span>
+              
               <span className="block">{couple.groom.shortName}</span>
             </h1>
         </motion.div>
@@ -61,7 +63,7 @@ const HeroSection = ({ guestName }: HeroSectionProps) => {
       <div className="flex-grow"></div>
 
       {/* --- BOTTOM CONTENT (Greeting Tamu) --- */}
-      <div className="relative z-10 w-full pb-12 px-6 flex flex-col items-center text-center">
+      <div className="relative z-10 w-full pb-48 px-6 flex flex-col items-center text-center">
           
           <motion.div
               className="w-full flex flex-col items-center"
@@ -69,24 +71,14 @@ const HeroSection = ({ guestName }: HeroSectionProps) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
           >
-              <p className="text-xs text-[#3A5A40] mb-2 font-medium tracking-widest uppercase opacity-80">
+              <p className="text-xs text-[#3A5A40] mb-1 font-medium tracking-widest uppercase opacity-80">
                   Kepada Yth.
               </p>
               
-              {/* NAMA TAMU (Tanpa Kotak) */}
-              {/* Gue gedein dikit font-nya biar tetep stand-out tanpa kotak */}
-              <h3 className="font-bold text-xl md:text-2xl text-[#3A5A40] capitalize tracking-wide mb-1" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.8)' }}>
+              {/* NAMA TAMU */}
+              <h3 className="font-bold text-xl md:text-2xl text-[#3A5A40] capitalize tracking-wide" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.8)' }}>
                   {guestName || "Tamu Undangan"}
               </h3>
-
-              {/* Scroll Indicator */}
-              <motion.div 
-                className="mt-8 text-[#3A5A40]/50"
-                animate={{ y: [0, 5, 0] }}
-                transition={{ repeat: Infinity, duration: 1.5 }}
-              >
-                <p className="text-[9px] tracking-[0.2em] uppercase">Scroll Down</p>
-              </motion.div>
           </motion.div>
       </div>
 
