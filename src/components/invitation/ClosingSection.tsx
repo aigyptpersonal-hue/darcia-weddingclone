@@ -10,7 +10,7 @@ const ClosingSection = () => {
   return (
     <section
       ref={ref}
-      className="relative py-24 px-6 bg-background overflow-hidden"
+      className="relative py-20 md:py-28 px-4 md:px-6 bg-background overflow-hidden"
     >
       {/* Decorative top border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
@@ -22,20 +22,20 @@ const ClosingSection = () => {
         transition={{ duration: 1 }}
       >
         {/* Thank you text */}
-        <p className="text-sm tracking-elegant uppercase text-muted-foreground mb-4">
+        <p className="text-xs tracking-elegant uppercase text-muted-foreground mb-4">
           {closing.thankYouText}
         </p>
 
         {/* Couple names */}
-        <h2 className="font-display text-4xl md:text-5xl text-primary mb-8">
+        <h2 className="font-display text-3xl md:text-4xl text-primary mb-6">
           {couple.groom.shortName} & {couple.bride.shortName}
         </h2>
 
         {/* Decorative element */}
-        <div className="flex items-center justify-center gap-4 mb-12">
-          <div className="w-16 h-px bg-gradient-to-r from-transparent to-primary/50" />
-          <Heart className="w-5 h-5 text-primary/50 fill-primary/20" />
-          <div className="w-16 h-px bg-gradient-to-l from-transparent to-primary/50" />
+        <div className="flex items-center justify-center gap-4 mb-10">
+          <div className="w-14 h-px bg-gradient-to-r from-transparent to-primary/40" />
+          <Heart className="w-4 h-4 text-primary/50 fill-primary/20" />
+          <div className="w-14 h-px bg-gradient-to-l from-transparent to-primary/40" />
         </div>
 
         {/* Credit */}

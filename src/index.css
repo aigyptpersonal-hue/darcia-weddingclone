@@ -6,91 +6,90 @@
 
 @layer base {
   :root {
-    /* Baby Blue & White wedding theme */
-    --background: 200 40% 98%;
-    --foreground: 210 30% 20%;
+    /* Warm cream & sage wedding theme */
+    --background: 45 30% 96%;
+    --foreground: 25 20% 25%;
 
-    --card: 200 50% 96%;
-    --card-foreground: 210 30% 20%;
+    --card: 45 25% 93%;
+    --card-foreground: 25 20% 25%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 30% 20%;
+    --popover: 45 30% 98%;
+    --popover-foreground: 25 20% 25%;
 
-    /* Baby Blue primary */
-    --primary: 195 80% 60%;
-    --primary-foreground: 0 0% 100%;
+    /* Sage green primary */
+    --primary: 140 25% 40%;
+    --primary-foreground: 45 30% 96%;
 
-    /* Light blue secondary */
-    --secondary: 200 60% 90%;
-    --secondary-foreground: 210 30% 25%;
+    /* Warm secondary */
+    --secondary: 45 20% 88%;
+    --secondary-foreground: 25 20% 30%;
 
-    --muted: 200 30% 92%;
-    --muted-foreground: 210 20% 45%;
+    --muted: 45 15% 90%;
+    --muted-foreground: 25 15% 45%;
 
-    /* Soft accent */
-    --accent: 195 70% 85%;
-    --accent-foreground: 210 30% 20%;
+    /* Soft accent - warm gold/brown */
+    --accent: 35 40% 75%;
+    --accent-foreground: 25 20% 25%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 200 40% 85%;
-    --input: 200 40% 85%;
-    --ring: 195 80% 60%;
+    --border: 45 20% 85%;
+    --input: 45 20% 85%;
+    --ring: 140 25% 40%;
 
     --radius: 0.75rem;
 
-    /* Custom wedding colors - Baby Blue palette */
-    --gold: 195 80% 60%;
-    --gold-light: 195 85% 75%;
-    --gold-dark: 195 65% 45%;
-    --champagne: 200 60% 92%;
-    --cream: 200 40% 98%;
-    --dark: 210 30% 20%;
-    --dark-card: 200 50% 96%;
-    --dark-elevated: 200 60% 92%;
+    /* Custom wedding colors */
+    --gold: 140 25% 40%;
+    --gold-light: 140 20% 55%;
+    --gold-dark: 140 30% 30%;
+    --champagne: 45 25% 90%;
+    --cream: 45 30% 96%;
+    --dark: 25 20% 25%;
+    --dark-card: 45 25% 93%;
+    --dark-elevated: 45 20% 90%;
 
-    /* Gradients - Baby Blue */
-    --gradient-gold: linear-gradient(135deg, hsl(195, 80%, 60%) 0%, hsl(195, 85%, 75%) 50%, hsl(195, 80%, 60%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(200, 40%, 98%) 0%, hsl(200, 50%, 94%) 100%);
-    --gradient-overlay: linear-gradient(180deg, transparent 0%, hsla(200, 40%, 98%, 0.9) 100%);
-    --gradient-wave: linear-gradient(180deg, hsl(200, 50%, 96%) 0%, hsl(200, 40%, 98%) 100%);
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(140, 25%, 40%) 0%, hsl(140, 20%, 55%) 50%, hsl(140, 25%, 40%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(45, 30%, 96%) 0%, hsl(45, 25%, 93%) 100%);
+    --gradient-overlay: linear-gradient(180deg, transparent 0%, hsla(45, 30%, 96%, 0.9) 100%);
 
-    /* Shadows - Baby Blue tint */
-    --shadow-gold: 0 4px 30px hsla(195, 80%, 60%, 0.2);
-    --shadow-soft: 0 10px 40px hsla(210, 30%, 20%, 0.08);
+    /* Shadows */
+    --shadow-gold: 0 4px 30px hsla(140, 25%, 40%, 0.15);
+    --shadow-soft: 0 10px 40px hsla(25, 20%, 25%, 0.08);
 
     /* Sidebar vars */
-    --sidebar-background: 200 50% 96%;
-    --sidebar-foreground: 210 30% 20%;
-    --sidebar-primary: 195 80% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 195 70% 85%;
-    --sidebar-accent-foreground: 210 30% 20%;
-    --sidebar-border: 200 40% 85%;
-    --sidebar-ring: 195 80% 60%;
+    --sidebar-background: 45 25% 93%;
+    --sidebar-foreground: 25 20% 25%;
+    --sidebar-primary: 140 25% 40%;
+    --sidebar-primary-foreground: 45 30% 96%;
+    --sidebar-accent: 140 20% 85%;
+    --sidebar-accent-foreground: 25 20% 25%;
+    --sidebar-border: 45 20% 85%;
+    --sidebar-ring: 140 25% 40%;
   }
 
   .dark {
-    --background: 200 40% 98%;
-    --foreground: 210 30% 20%;
-    --card: 200 50% 96%;
-    --card-foreground: 210 30% 20%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 30% 20%;
-    --primary: 195 80% 60%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 200 60% 90%;
-    --secondary-foreground: 210 30% 25%;
-    --muted: 200 30% 92%;
-    --muted-foreground: 210 20% 45%;
-    --accent: 195 70% 85%;
-    --accent-foreground: 210 30% 20%;
-    --destructive: 0 84.2% 60.2%;
+    --background: 45 30% 96%;
+    --foreground: 25 20% 25%;
+    --card: 45 25% 93%;
+    --card-foreground: 25 20% 25%;
+    --popover: 45 30% 98%;
+    --popover-foreground: 25 20% 25%;
+    --primary: 140 25% 40%;
+    --primary-foreground: 45 30% 96%;
+    --secondary: 45 20% 88%;
+    --secondary-foreground: 25 20% 30%;
+    --muted: 45 15% 90%;
+    --muted-foreground: 25 15% 45%;
+    --accent: 35 40% 75%;
+    --accent-foreground: 25 20% 25%;
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 200 40% 85%;
-    --input: 200 40% 85%;
-    --ring: 195 80% 60%;
+    --border: 45 20% 85%;
+    --input: 45 20% 85%;
+    --ring: 140 25% 40%;
   }
 }
 
@@ -162,42 +161,7 @@
   }
 
   .border-gold-subtle {
-    border-color: hsla(195, 80%, 60%, 0.3);
-  }
-
-  /* Wave transition component */
-  .wave-top {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    transform: rotate(180deg);
-  }
-
-  .wave-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-  }
-
-  .wave-top svg,
-  .wave-bottom svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 60px;
-  }
-
-  @media (min-width: 768px) {
-    .wave-top svg,
-    .wave-bottom svg {
-      height: 80px;
-    }
+    border-color: hsla(140, 25%, 40%, 0.3);
   }
 }
 
@@ -252,56 +216,12 @@
     }
   }
 
-  @keyframes pulse-blue {
-    0%, 100% {
-      box-shadow: 0 0 0 0 hsla(195, 80%, 60%, 0.4);
-    }
-    50% {
-      box-shadow: 0 0 20px 10px hsla(195, 80%, 60%, 0.1);
-    }
-  }
-
   @keyframes shimmer {
     0% {
       background-position: -200% center;
     }
     100% {
       background-position: 200% center;
-    }
-  }
-
-  @keyframes slide-up {
-    from {
-      opacity: 0;
-      transform: translateY(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes bloom {
-    0% {
-      opacity: 0;
-      transform: scale(0.8) rotate(-5deg);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.05) rotate(2deg);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1) rotate(0deg);
-    }
-  }
-
-  @keyframes wave-flow {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
     }
   }
 
@@ -321,10 +241,6 @@
     animation: float 3s ease-in-out infinite;
   }
 
-  .animate-pulse-blue {
-    animation: pulse-blue 2s ease-in-out infinite;
-  }
-
   .animate-shimmer {
     background: linear-gradient(
       90deg,
@@ -336,14 +252,6 @@
     animation: shimmer 3s linear infinite;
   }
 
-  .animate-slide-up {
-    animation: slide-up 0.8s ease-out forwards;
-  }
-
-  .animate-bloom {
-    animation: bloom 1s ease-out forwards;
-  }
-
   /* Animation delays */
   .delay-100 { animation-delay: 100ms; }
   .delay-200 { animation-delay: 200ms; }
@@ -353,19 +261,7 @@
   .delay-700 { animation-delay: 700ms; }
   .delay-1000 { animation-delay: 1000ms; }
 
-  /* Scroll-triggered animations */
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Decorative elements - Baby Blue */
+  /* Decorative elements */
   .ornament-line {
     height: 1px;
     background: linear-gradient(
