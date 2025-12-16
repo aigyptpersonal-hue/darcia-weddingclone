@@ -1,12 +1,48 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import CoverScreen from "@/components/invitation/CoverScreen";
+import HeroSection from "@/components/invitation/HeroSection";
+import CoupleSection from "@/components/invitation/CoupleSection";
+import CountdownSection from "@/components/invitation/CountdownSection";
+import EventsSection from "@/components/invitation/EventsSection";
+import StorySection from "@/components/invitation/StorySection";
+import QuranVerseSection from "@/components/invitation/QuranVerseSection";
+import GiftSection from "@/components/invitation/GiftSection";
+import RSVPSection from "@/components/invitation/RSVPSection";
+import ClosingSection from "@/components/invitation/ClosingSection";
+import { invitationData } from "@/data/invitationData";
 
 const Index = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpenInvitation = () => {
+    setIsOpen(true);
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      {/* SEO Meta */}
+      <title>{invitationData.meta.title}</title>
+      
+      {/* Cover Screen */}
+      <AnimatePresence>
+        {!isOpen && <CoverScreen onOpen={handleOpenInvitation} />}
+      </AnimatePresence>
+
+      {/* Main Content */}
+      {isOpen && (
+        <main className="animate-fade-in">
+          <HeroSection />
+          <CoupleSection />
+          <CountdownSection />
+          <EventsSection />
+          <StorySection />
+          <QuranVerseSection />
+          <GiftSection />
+          <RSVPSection />
+          <ClosingSection />
+        </main>
+      )}
     </div>
   );
 };
