@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { invitationData } from "../../data/invitationData"; // Sesuaikan path import
+import { invitationData } from "../../data/invitationData"; 
 
 interface TimeLeft {
   days: number;
@@ -67,8 +67,8 @@ const CountdownSection = () => {
     <section
       ref={ref}
       id="date"
-      // STYLE: Background Cream, Teks Hijau, Font Sans
-      className="relative py-20 px-4 md:px-6 bg-[#F9F7F2] overflow-hidden font-sans text-[#3A5A40]"
+      // UPDATE BACKGROUND: Gradient dari warna CoupleSection (#F8F0E5) ke Cream Muda (#F9F7F2)
+      className="relative py-20 px-4 md:px-6 bg-gradient-to-b from-[#F8F0E5] to-[#F9F7F2] overflow-hidden font-sans text-[#3A5A40]"
     >
       <motion.div
         className="relative z-10 max-w-3xl mx-auto text-center"
@@ -95,8 +95,9 @@ const CountdownSection = () => {
         </motion.div>
 
         {/* --- COUNTDOWN BOXES --- */}
+        {/* UPDATE GRID: grid-cols-2 biar jadi 2 atas 2 bawah */}
         <motion.div
-          className="grid grid-cols-4 gap-3 md:gap-6 mb-10 max-w-2xl mx-auto"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-10 max-w-2xl mx-auto px-4"
           variants={containerVariants}
         >
           {timeBlocks.map((block) => (
@@ -104,12 +105,12 @@ const CountdownSection = () => {
               key={block.label}
               variants={itemVariants}
             >
-              {/* Box Style: Putih Transparan + Border Tipis */}
-              <div className="bg-white/60 backdrop-blur-sm border border-[#3A5A40]/10 rounded-t-[30px] rounded-b-[10px] p-3 md:p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
+              {/* Box Style */}
+              <div className="bg-white/40 backdrop-blur-sm border border-[#3A5A40]/10 rounded-t-[30px] rounded-b-[10px] p-4 shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col justify-center items-center min-h-[100px]">
                 
                 {/* Angka (Font Sinera) */}
                 <motion.span 
-                  className="block text-3xl md:text-5xl text-[#3A5A40] mb-1 leading-none"
+                  className="block text-4xl md:text-5xl text-[#3A5A40] mb-1 leading-none"
                   style={{ fontFamily: "'Sinera', serif" }}
                   key={block.value}
                   initial={{ scale: 1.1, opacity: 0.5 }}
