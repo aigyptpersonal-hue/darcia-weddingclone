@@ -45,12 +45,11 @@ const GiftSection = () => {
   return (
     <section
       ref={ref}
-      className="relative py-24 px-6 bg-background overflow-hidden"
+      className="relative py-20 md:py-28 px-4 md:px-6 bg-card overflow-hidden"
     >
-      {/* Decorative background */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_hsl(var(--gold))_0%,_transparent_70%)]" />
-      </div>
+      {/* Decorative corners */}
+      <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-primary/15" />
+      <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-primary/15" />
 
       <motion.div
         className="relative z-10 max-w-2xl mx-auto"
@@ -59,11 +58,11 @@ const GiftSection = () => {
         animate={inView ? "visible" : "hidden"}
       >
         {/* Title */}
-        <motion.div className="text-center mb-12" variants={itemVariants}>
-          <div className="inline-flex items-center justify-center w-16 h-16 border border-primary/30 rounded-full mb-6">
-            <Gift className="w-7 h-7 text-primary" />
+        <motion.div className="text-center mb-10" variants={itemVariants}>
+          <div className="inline-flex items-center justify-center w-14 h-14 border border-primary/30 rounded-full mb-5 bg-background">
+            <Gift className="w-6 h-6 text-primary" />
           </div>
-          <h2 className="font-display text-2xl md:text-3xl text-primary mb-4">
+          <h2 className="font-display text-2xl md:text-3xl text-primary mb-3">
             {gift.title}
           </h2>
           <p className="text-sm text-muted-foreground leading-relaxed max-w-md mx-auto">
@@ -72,11 +71,11 @@ const GiftSection = () => {
         </motion.div>
 
         {/* Bank accounts */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           {gift.accounts.map((account, index) => (
             <motion.div
               key={account.accountNumber}
-              className="bg-card border border-primary/20 p-6 md:p-8"
+              className="bg-background border border-primary/15 p-5 md:p-6 rounded-xl"
               variants={itemVariants}
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -88,7 +87,7 @@ const GiftSection = () => {
                   <p className="text-sm text-foreground/80 mb-2">
                     a/n {account.accountName}
                   </p>
-                  <p className="font-display text-2xl text-primary tracking-wider">
+                  <p className="font-display text-xl text-primary tracking-wider">
                     {account.accountNumber}
                   </p>
                 </div>
@@ -96,7 +95,7 @@ const GiftSection = () => {
                 {/* Copy button */}
                 <button
                   onClick={() => handleCopy(account.accountNumber, index)}
-                  className="flex items-center justify-center gap-2 px-6 py-3 border border-primary/40 text-primary text-sm hover:bg-primary/10 transition-all duration-300 w-full md:w-auto"
+                  className="flex items-center justify-center gap-2 px-5 py-2.5 border border-primary/30 text-primary text-sm rounded-full hover:bg-primary/10 transition-all duration-300 w-full md:w-auto"
                 >
                   {copiedIndex === index ? (
                     <>
