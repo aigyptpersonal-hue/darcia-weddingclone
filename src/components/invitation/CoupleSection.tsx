@@ -27,7 +27,6 @@ const CoupleSection = () => {
   return (
     <section
       ref={ref}
-      // UPDATE BACKGROUND COLOR DISINI: #F8F0E5
       className="relative py-20 px-4 md:px-6 bg-[#F8F0E5] overflow-hidden font-sans text-[#3A5A40]"
     >
       <motion.div
@@ -64,7 +63,7 @@ const CoupleSection = () => {
         {/* --- 2. COUPLE GRID --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8 items-start relative">
           
-          {/* --- KARTU PERTAMA (Data: Siska, Foto: Bride) --- */}
+          {/* --- KARTU PERTAMA (Data: Siska) --- */}
           <motion.div className="text-center flex flex-col items-center" variants={itemVariants}>
             <div className="relative w-48 h-64 md:w-56 md:h-72 mx-auto mb-6">
               <div className="absolute inset-0 border border-[#3A5A40]/30 rounded-t-[100px] rounded-b-[20px] translate-x-2 translate-y-2" />
@@ -73,7 +72,6 @@ const CoupleSection = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                {/* Foto Cewek */}
                 <img 
                   src={bridePhoto} 
                   alt={couple.groom.fullName}
@@ -82,16 +80,19 @@ const CoupleSection = () => {
               </motion.div>
             </div>
 
-            {/* NAMA LENGKAP SISKA */}
             <h3 className="text-2xl md:text-3xl text-[#3A5A40] mb-4 leading-tight px-2" style={{ fontFamily: "'Sinera', serif" }}>
               {couple.groom.fullName}
             </h3>
             
-            <div className="text-sm text-[#3A5A40]/80 space-y-1 leading-relaxed">
-                <p className="italic mb-1">{couple.groom.childOrder}</p>
-                <p className="font-semibold">{couple.groom.fatherName}</p>
-                <p className="text-xs">&</p>
-                <p className="font-semibold">{couple.groom.motherName}</p>
+            {/* --- UPDATE: NAMA ORTU KIRI KANAN --- */}
+            <div className="text-sm text-[#3A5A40]/80 flex flex-col items-center gap-1 leading-snug">
+                {/* Putra/Putri dari... */}
+                <p className="italic">{couple.groom.childOrder}</p>
+                
+                {/* Nama Bapak & Ibu Sebaris */}
+                <p className="font-semibold px-4">
+                  {couple.groom.fatherName} & {couple.groom.motherName}
+                </p>
             </div>
 
             <a
@@ -114,7 +115,7 @@ const CoupleSection = () => {
              <span className="text-[12rem]" style={{ fontFamily: "'Sinera', serif" }}>&</span>
           </div>
 
-          {/* --- KARTU KEDUA (Data: Ridho, Foto: Groom) --- */}
+          {/* --- KARTU KEDUA (Data: Ridho) --- */}
           <motion.div className="text-center flex flex-col items-center" variants={itemVariants}>
             <div className="relative w-48 h-64 md:w-56 md:h-72 mx-auto mb-6">
                <div className="absolute inset-0 border border-[#3A5A40]/30 rounded-t-[100px] rounded-b-[20px] -translate-x-2 translate-y-2" />
@@ -123,7 +124,6 @@ const CoupleSection = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                {/* Foto Cowok */}
                 <img 
                   src={groomPhoto} 
                   alt={couple.bride.fullName}
@@ -132,16 +132,19 @@ const CoupleSection = () => {
               </motion.div>
             </div>
 
-            {/* NAMA LENGKAP RIDHO */}
             <h3 className="text-2xl md:text-3xl text-[#3A5A40] mb-4 leading-tight px-2" style={{ fontFamily: "'Sinera', serif" }}>
               {couple.bride.fullName}
             </h3>
 
-            <div className="text-sm text-[#3A5A40]/80 space-y-1 leading-relaxed">
-                <p className="italic mb-1">{couple.bride.childOrder}</p>
-                <p className="font-semibold">{couple.bride.fatherName}</p>
-                <p className="text-xs">&</p>
-                <p className="font-semibold">{couple.bride.motherName}</p>
+            {/* --- UPDATE: NAMA ORTU KIRI KANAN --- */}
+            <div className="text-sm text-[#3A5A40]/80 flex flex-col items-center gap-1 leading-snug">
+                {/* Putra/Putri dari... */}
+                <p className="italic">{couple.bride.childOrder}</p>
+
+                {/* Nama Bapak & Ibu Sebaris */}
+                <p className="font-semibold px-4">
+                  {couple.bride.fatherName} & {couple.bride.motherName}
+                </p>
             </div>
 
             <a
