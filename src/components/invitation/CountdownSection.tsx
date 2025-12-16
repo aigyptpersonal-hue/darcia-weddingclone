@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { invitationData } from "@/data/invitationData";
-import { Heart } from "lucide-react";
+import { invitationData } from "../../data/invitationData"; // Sesuaikan path import
 
 interface TimeLeft {
   days: number;
@@ -68,46 +67,50 @@ const CountdownSection = () => {
     <section
       ref={ref}
       id="date"
-      className="relative py-16 md:py-24 px-4 md:px-6 bg-card overflow-hidden"
+      // STYLE: Background Cream, Teks Hijau, Font Sans
+      className="relative py-20 px-4 md:px-6 bg-[#F9F7F2] overflow-hidden font-sans text-[#3A5A40]"
     >
-      {/* Frame border decoration */}
-      <div className="absolute inset-6 md:inset-10 border border-primary/10 pointer-events-none" />
-
       <motion.div
-        className="relative z-10 max-w-2xl mx-auto text-center"
+        className="relative z-10 max-w-3xl mx-auto text-center"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
-        {/* Title */}
-        <motion.div variants={itemVariants} className="mb-8">
-          <p className="text-xs tracking-elegant uppercase text-muted-foreground mb-3">
+        
+        {/* --- TITLE SECTION --- */}
+        <motion.div variants={itemVariants} className="mb-10">
+          <p className="text-xs tracking-[0.2em] uppercase text-[#3A5A40]/60 mb-3 font-medium">
             Menghitung Hari
           </p>
-          <h2 className="font-display text-2xl md:text-3xl text-primary uppercase tracking-wide">
+          
+          {/* Judul Font Sinera */}
+          <h2 className="text-3xl md:text-4xl text-[#3A5A40] mb-4" style={{ fontFamily: "'Sinera', serif" }}>
             Menuju Kebahagiaan
           </h2>
-          <div className="divider-ornament mt-4">
-            <Heart className="w-3 h-3 text-primary/40 fill-primary/20" />
+          
+          {/* Divider Simpel */}
+          <div className="flex justify-center">
+             <div className="w-16 h-[1px] bg-[#3A5A40]/30"></div>
           </div>
         </motion.div>
 
-        {/* Countdown boxes */}
+        {/* --- COUNTDOWN BOXES --- */}
         <motion.div
-          className="grid grid-cols-4 gap-2 md:gap-4 mb-8"
+          className="grid grid-cols-4 gap-3 md:gap-6 mb-10 max-w-2xl mx-auto"
           variants={containerVariants}
         >
-          {timeBlocks.map((block, index) => (
+          {timeBlocks.map((block) => (
             <motion.div
               key={block.label}
-              className="relative"
               variants={itemVariants}
             >
-              <div className="bg-background border border-primary/15 p-3 md:p-4 relative">
-                {/* Inner frame */}
-                <div className="absolute inset-1 border border-primary/5 pointer-events-none" />
+              {/* Box Style: Putih Transparan + Border Tipis */}
+              <div className="bg-white/60 backdrop-blur-sm border border-[#3A5A40]/10 rounded-t-[30px] rounded-b-[10px] p-3 md:p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
+                
+                {/* Angka (Font Sinera) */}
                 <motion.span 
-                  className="block font-display text-2xl md:text-4xl text-primary mb-1"
+                  className="block text-3xl md:text-5xl text-[#3A5A40] mb-1 leading-none"
+                  style={{ fontFamily: "'Sinera', serif" }}
                   key={block.value}
                   initial={{ scale: 1.1, opacity: 0.5 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -115,7 +118,9 @@ const CountdownSection = () => {
                 >
                   {String(block.value).padStart(2, "0")}
                 </motion.span>
-                <span className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider">
+                
+                {/* Label */}
+                <span className="text-[10px] md:text-xs text-[#3A5A40]/70 uppercase tracking-widest font-medium">
                   {block.label}
                 </span>
               </div>
@@ -123,13 +128,14 @@ const CountdownSection = () => {
           ))}
         </motion.div>
 
-        {/* Description */}
+        {/* --- DESCRIPTION --- */}
         <motion.p
-          className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed"
+          className="text-sm md:text-base text-[#3A5A40]/80 max-w-md mx-auto leading-relaxed italic"
           variants={itemVariants}
         >
-          Dengan memohon Ridho serta Rahmat Allah SWT, kami bermaksud menyelenggarakan acara pernikahan
+          "Dengan memohon Ridho serta Rahmat Allah SWT, kami bermaksud menyelenggarakan acara pernikahan ini."
         </motion.p>
+        
       </motion.div>
     </section>
   );
