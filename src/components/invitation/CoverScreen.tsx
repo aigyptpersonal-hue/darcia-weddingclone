@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { invitationData } from "@/data/invitationData";
-import heroBg from "@/assets/hero-bg.png";
+// Pastikan hero-bg.png adalah gambar yang sama dengan yang dipakai di HeroSection (misal 1235.png kemarin)
+// Jika beda, sesuaikan path importnya.
+import heroBg from "@/assets/hero-bg.png"; 
 
 interface CoverScreenProps {
   onOpen: () => void;
@@ -8,112 +10,95 @@ interface CoverScreenProps {
 }
 
 const CoverScreen = ({ onOpen, guestName }: CoverScreenProps) => {
-  const { meta, couple } = invitationData;
-  const displayName = guestName || "Bapak/Ibu/Saudara/i";
+  // Kita cuma butuh data couple di sini
+  const { couple } = invitationData;
+  const displayName = guestName || "Tamu Undangan";
 
   return (
-    <motion.div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
-      initial={{ opacity: 1 }}
+    <motion.section
+      // onClick ditaruh di sini agar seluruh layar bisa diklik
+      onClick={onOpen}
+      className="fixed inset-0 z-50 h-[100dvh] w-full flex flex-col justify-between items-center overflow-hidden bg-[#F9F7F2] font-sans cursor-pointer"
+      // Animasi keluar saat cover tertutup
       exit={{ 
         opacity: 0, 
-        scale: 1.1,
-        filter: "blur(10px)"
+        scale: 1.05, 
+        transition: { duration: 0.8, ease: "easeInOut" } 
       }}
-      transition={{ duration: 1, ease: "easeInOut" }}
     >
-      {/* Background image */}
-      <div className="absolute inset-0">
+      
+      {/* --- LAYER 1: BACKGROUND --- */}
+      <div className="absolute inset-0 z-0">
         <img 
           src={heroBg} 
-          alt="Wedding background"
+          alt="Wedding Background"
           className="w-full h-full object-cover object-center"
         />
+        {/* Gradient Putih di bawah biar teks tamu kebaca jelas */}
+        <div className="absolute bottom-0 left-0 w-full h-[45vh] bg-gradient-to-t from-[#F9F7F2] via-[#F9F7F2]/90 to-transparent" />
       </div>
 
-      {/* Content overlay - positioned at center-top */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 max-w-md mx-auto mt-[-15vh]">
-        {/* Tagline */}
+      {/* --- LAYER 2: TOP CONTENT (JUDUL) --- */}
+      {/* pt-28: Posisi judul dari atas */}
+      <div className="relative z-10 w-full pt-28 px-4 flex flex-col items-center text-center">
+        
+        {/* TEXT KECIL */}
         <motion.p
-          className="text-xs tracking-elegant uppercase text-primary/80 mb-3"
+          className="text-[10px] tracking-[0.25em] uppercase text-[#3A5A40] font-medium mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
         >
-          {meta.tagline}
+          The Wedding of
         </motion.p>
 
-        {/* Couple Names */}
-        <motion.h1
-          className="font-display text-4xl md:text-5xl lg:text-6xl text-primary mb-2"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.7 }}
-        >
-          {couple.groom.shortName}
-        </motion.h1>
-        
-        <motion.span
-          className="font-display text-3xl md:text-4xl text-primary/60 my-1"
-          initial={{ opacity: 0, scale: 0 }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="flex flex-col items-center w-full"
         >
-          &
-        </motion.span>
-        
-        <motion.h1
-          className="font-display text-4xl md:text-5xl lg:text-6xl text-primary mb-6"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.7 }}
-        >
-          {couple.bride.shortName}
-        </motion.h1>
-
-        {/* Decorative line */}
-        <motion.div
-          className="w-20 h-px bg-gradient-to-r from-transparent via-primary to-transparent mb-6"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
-        />
-
-        {/* Guest Name */}
-        <motion.div
-          className="mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.6 }}
-        >
-          <p className="text-xs tracking-wider uppercase text-muted-foreground mb-1">
-            Kepada Yth.
-          </p>
-          <p className="text-base md:text-lg text-foreground font-medium">
-            {displayName}
-          </p>
+            {/* NAMA MEMPELAI (SINERA) */}
+            {/* Menggunakan flex-col biar nama groom, &, dan bride tersusun vertikal rapi */}
+            <h1 className="text-[3.8rem] leading-[1.1] text-[#3A5A40] drop-shadow-sm flex flex-col items-center mt-2" style={{ fontFamily: "'Sinera', serif" }}>
+              <span className="block">{couple.groom.shortName}</span>
+              {/* Ampersand pake Sinera juga */}
+              <span className="text-4xl my-1" style={{ fontFamily: "'Sinera', serif" }}>&</span>
+              <span className="block">{couple.bride.shortName}</span>
+            </h1>
         </motion.div>
-
-        {/* Open Button */}
-        <motion.button
-          onClick={onOpen}
-          className="group relative px-8 py-3 bg-primary text-primary-foreground text-sm tracking-elegant uppercase transition-all duration-300 rounded-full shadow-gold overflow-hidden"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <motion.span
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-            initial={{ x: "-100%" }}
-            animate={{ x: "100%" }}
-            transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
-          />
-          <span className="relative z-10">Buka Undangan</span>
-        </motion.button>
       </div>
-    </motion.div>
+
+      {/* --- SPACER TENGAH --- */}
+      <div className="flex-grow"></div>
+
+      {/* --- LAYER 3: BOTTOM CONTENT (GREETING TAMU) --- */}
+      {/* pb-20: Jarak dari bawah */}
+      <div className="relative z-10 w-full pb-20 px-6 flex flex-col items-center text-center">
+          
+          <motion.div
+              className="w-full flex flex-col items-center animate-pulse" // Efek kedip halus biar tau bisa diklik
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.8 }}
+          >
+              <p className="text-xs text-[#3A5A40] mb-1 font-medium tracking-widest uppercase opacity-80">
+                  Kepada Yth.
+              </p>
+              
+              {/* NAMA TAMU */}
+              <h3 className="font-bold text-xl md:text-2xl text-[#3A5A40] capitalize tracking-wide mb-3" style={{ textShadow: '0 1px 2px rgba(255,255,255,0.8)' }}>
+                  {displayName}
+              </h3>
+
+              {/* Instruksi Kecil */}
+              <p className="text-[9px] tracking-[0.2em] uppercase text-[#3A5A40]/70 mt-4 border-b border-[#3A5A40]/30 pb-1">
+                ( Ketuk Layar Untuk Membuka )
+              </p>
+          </motion.div>
+      </div>
+
+    </motion.section>
   );
 };
 
