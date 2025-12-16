@@ -2,7 +2,11 @@ import { motion } from "framer-motion";
 import { invitationData } from "@/data/invitationData";
 import { ChevronDown } from "lucide-react";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  guestName?: string;
+}
+
+const HeroSection = ({ guestName }: HeroSectionProps) => {
   const { events, couple } = invitationData;
 
   return (
@@ -24,6 +28,23 @@ const HeroSection = () => {
 
       {/* Main content */}
       <div className="relative z-10 text-center max-w-2xl mx-auto">
+        {/* Guest greeting */}
+        {guestName && (
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            <p className="text-xs tracking-wider uppercase text-muted-foreground mb-1">
+              Kepada Yth.
+            </p>
+            <p className="text-lg text-foreground/90 font-medium">
+              {guestName}
+            </p>
+          </motion.div>
+        )}
+
         {/* Event type */}
         <motion.p
           className="text-xs md:text-sm tracking-elegant uppercase text-muted-foreground mb-6"

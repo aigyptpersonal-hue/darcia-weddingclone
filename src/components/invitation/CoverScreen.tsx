@@ -1,12 +1,14 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { invitationData } from "@/data/invitationData";
 
 interface CoverScreenProps {
   onOpen: () => void;
+  guestName?: string;
 }
 
-const CoverScreen = ({ onOpen }: CoverScreenProps) => {
+const CoverScreen = ({ onOpen, guestName }: CoverScreenProps) => {
   const { meta, couple } = invitationData;
+  const displayName = guestName || "Bapak/Ibu/Saudara/i";
 
   return (
     <motion.div
@@ -24,7 +26,7 @@ const CoverScreen = ({ onOpen }: CoverScreenProps) => {
       <div className="relative z-10 flex flex-col items-center text-center px-6">
         {/* Logo/Monogram */}
         <motion.div
-          className="mb-8"
+          className="mb-6"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
@@ -46,13 +48,28 @@ const CoverScreen = ({ onOpen }: CoverScreenProps) => {
 
         {/* Couple Names */}
         <motion.h1
-          className="font-display text-4xl md:text-6xl text-primary mb-12"
+          className="font-display text-4xl md:text-6xl text-primary mb-6"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
         >
           {couple.groom.shortName} & {couple.bride.shortName}
         </motion.h1>
+
+        {/* Guest Name */}
+        <motion.div
+          className="mb-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+        >
+          <p className="text-xs tracking-wider uppercase text-muted-foreground mb-1">
+            Kepada Yth.
+          </p>
+          <p className="text-lg md:text-xl text-foreground font-medium">
+            {displayName}
+          </p>
+        </motion.div>
 
         {/* Open Button */}
         <motion.button
@@ -64,13 +81,13 @@ const CoverScreen = ({ onOpen }: CoverScreenProps) => {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          <span className="relative z-10">Open Invitation</span>
+          <span className="relative z-10">Buka Undangan</span>
           <div className="absolute inset-0 bg-primary/5 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
         </motion.button>
 
         {/* Decorative line */}
         <motion.div
-          className="mt-16 w-px h-20 bg-gradient-to-b from-primary/50 to-transparent"
+          className="mt-12 w-px h-16 bg-gradient-to-b from-primary/50 to-transparent"
           initial={{ scaleY: 0, opacity: 0 }}
           animate={{ scaleY: 1, opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.6 }}
