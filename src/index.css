@@ -4,7 +4,7 @@
 @font-face {
   font-family: 'South Paris';
   /* Perhatikan tanda kutip dua "..." biar spasi kebaca */
-  src: url("/SOUTH PARIS DEMO VERSION.OTF") format("opentype");
+  src: url("public/SOUTH PARIS DEMO VERSION.OTF") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
@@ -12,7 +12,7 @@
 /* Font Serif (Untuk Nama "Siska & Ridho") */
 @font-face {
   font-family: 'Sinera';
-  src: url("/SINERA.OTF") format("opentype");
+  src: url("public/SINERA.OTF") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
