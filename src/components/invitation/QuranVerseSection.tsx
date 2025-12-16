@@ -1,52 +1,61 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { invitationData } from "@/data/invitationData";
+import { invitationData } from "../../data/invitationData"; 
 
 const QuranVerseSection = () => {
   const { quranVerse } = invitationData;
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
     <section
       ref={ref}
-      className="relative py-16 md:py-24 px-4 md:px-6 bg-background overflow-hidden"
+      // BACKGROUND: Transisi halus dari #F9F7F2 (akhir Story) ke #F8F0E5
+      className="relative py-24 px-4 md:px-6 bg-gradient-to-b from-[#F9F7F2] to-[#F8F0E5] overflow-hidden font-sans text-[#3A5A40]"
     >
       <motion.div
-        className="relative z-10 max-w-2xl mx-auto text-center"
+        className="relative z-10 max-w-3xl mx-auto text-center"
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 1 }}
       >
-        {/* Decorative top */}
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <div className="w-10 h-px bg-primary/20" />
-          <div className="w-2 h-2 rotate-45 border border-primary/30" />
-          <div className="w-10 h-px bg-primary/20" />
+        
+        {/* --- DECORATIVE TOP --- */}
+        <div className="flex items-center justify-center gap-4 mb-10 opacity-60">
+           <div className="w-12 h-[1px] bg-[#3A5A40]"></div>
+           <div className="w-1.5 h-1.5 rotate-45 border border-[#3A5A40]"></div>
+           <div className="w-12 h-[1px] bg-[#3A5A40]"></div>
         </div>
 
-        {/* Arabic text */}
-        {quranVerse.arabic && (
-          <p className="font-display text-xl md:text-2xl text-primary mb-6 leading-relaxed" dir="rtl">
-            {quranVerse.arabic}
-          </p>
-        )}
+        {/* --- ARABIC IMAGE (Arum.png) --- */}
+        <div className="flex justify-center mb-8">
+            <img 
+              src="/Arum.png" 
+              alt="QS Ar-Rum 21" 
+              // Ukuran responsif: HP (h-16) -> Laptop (h-24)
+              className="h-16 md:h-24 object-contain opacity-90 drop-shadow-sm"
+            />
+        </div>
 
-        {/* Translation */}
-        <p className="font-script text-sm md:text-base text-foreground/70 leading-relaxed mb-5 max-w-lg mx-auto">
+        {/* --- TRANSLATION --- */}
+        <p className="text-sm md:text-base text-[#3A5A40]/80 leading-relaxed italic mb-8 max-w-2xl mx-auto px-2">
           "{quranVerse.translation}"
         </p>
 
-        {/* Source */}
-        <p className="text-primary text-xs uppercase tracking-wider">
+        {/* --- SOURCE --- */}
+        <h3 
+            className="text-xl md:text-2xl text-[#3A5A40] tracking-wide" 
+            style={{ fontFamily: "'Sinera', serif" }}
+        >
           {quranVerse.source}
-        </p>
+        </h3>
 
-        {/* Decorative bottom */}
-        <div className="flex items-center justify-center gap-4 mt-8">
-          <div className="w-10 h-px bg-primary/20" />
-          <div className="w-2 h-2 rotate-45 border border-primary/30" />
-          <div className="w-10 h-px bg-primary/20" />
+        {/* --- DECORATIVE BOTTOM --- */}
+        <div className="flex items-center justify-center gap-4 mt-10 opacity-60">
+           <div className="w-12 h-[1px] bg-[#3A5A40]"></div>
+           <div className="w-1.5 h-1.5 rotate-45 border border-[#3A5A40]"></div>
+           <div className="w-12 h-[1px] bg-[#3A5A40]"></div>
         </div>
+
       </motion.div>
     </section>
   );
