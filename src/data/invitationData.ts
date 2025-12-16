@@ -61,7 +61,7 @@ export const invitationData = {
       isCompleted: false,
     },
     // Tanggal target untuk countdown (format: YYYY-MM-DD)
-    countdownTarget: "2025-12-17T10:00:00",
+    countdownTarget: "2025-12-26T10:00:00",
   },
 
   // === OPENING TEXT ===
