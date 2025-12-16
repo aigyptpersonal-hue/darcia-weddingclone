@@ -6,9 +6,9 @@
 export const invitationData = {
   // === META & BRANDING ===
   meta: {
-    title: "Darcia Wedding Invitation – Signature 01",
+    title: "Siska & Ridho Wedding Invitation",
     tagline: "THE WEDDING OF",
-    logo: "D&C", // Inisial pasangan
+    logo: "S&R", // Inisial pasangan
   },
 
   // === PASANGAN ===
