@@ -19,7 +19,7 @@ export const invitationData = {
       childOrder: "Putri dari",
       fatherName: "Bpk. Hendriko",
       motherName: "Ibu Nur Azizah",
-      instagram: "https://www.instagram.com/dfmaa",
+      instagram: "instagram.com/nurhendrisiska",
       photo: "/images/groom.jpg", // Ganti dengan foto pengantin pria
     },
     bride: {
@@ -28,7 +28,7 @@ export const invitationData = {
       childOrder: "Putra dari",
       fatherName: "Bpk. Henisto",
       motherName: "Ibu Yenni",
-      instagram: "https://www.instagram.com/Syazkia_cia",
+      instagram: "instagram.com/ridormf",
       photo: "/images/bride.jpg", // Ganti dengan foto pengantin wanita
     },
     quote: "Dua jiwa namun satu pikiran, dua hati namun satu perasaan",
@@ -66,7 +66,7 @@ export const invitationData = {
 
   // === OPENING TEXT ===
   opening: {
-    eventType: "Wedding",
+    eventType: "Akad Nikah & Resepsi",
     bismillah: "Bismillahirrahmanirrahim",
     mainText:
       "Dengan memohon rahmat dan ridho Allah Subhanahu wa Ta'ala, kami memohon kehadiran Bapak/Ibu/Saudara/i pada acara pernikahan kami:",
