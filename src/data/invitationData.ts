@@ -14,20 +14,20 @@ export const invitationData = {
   // === PASANGAN ===
   couple: {
     groom: {
-      fullName: "Daru Fahmaa Muliawan Lc",
-      shortName: "Daru",
-      childOrder: "Putra Tunggal dari",
-      fatherName: "Bpk. Asep Muliawan S.ST",
-      motherName: "Ibu Euis Akmaliyah Amd",
+      fullName: "Siska Nur Hendri, A.Md.Keb",
+      shortName: "Siska",
+      childOrder: "Putri dari",
+      fatherName: "Bpk. Hendriko",
+      motherName: "Ibu Nur Azizah",
       instagram: "https://www.instagram.com/dfmaa",
       photo: "/images/groom.jpg", // Ganti dengan foto pengantin pria
     },
     bride: {
-      fullName: "Syazkia Lathiifa",
-      shortName: "Cia",
-      childOrder: "Putri Kedua dari",
-      fatherName: "Bpk. Zul Besmara S.pd",
-      motherName: "Ibu Elnida Yanti",
+      fullName: "Ridho Rahmat Fauzi",
+      shortName: "Ridho",
+      childOrder: "Putra dari",
+      fatherName: "Bpk. Henisto",
+      motherName: "Ibu Yenni",
       instagram: "https://www.instagram.com/Syazkia_cia",
       photo: "/images/bride.jpg", // Ganti dengan foto pengantin wanita
     },
@@ -36,40 +36,40 @@ export const invitationData = {
 
   // === ACARA ===
   events: {
-    mainEvent: "NGUNDUH MANTU",
-    mainDate: "August 6th 2025",
+    mainEvent: "Wedding",
+    mainDate: "December 26th 2025",
     akadNikah: {
       title: "Akad Nikah",
-      day: "Rabu",
-      date: "0",
-      month: "November",
-      year: "2024",
-      time: "Telah Terlaksana",
-      venue: "Masjid Manarul Ilmi, Islamic Center Padang Panjang",
-      mapsLink: "https://maps.app.goo.gl/jzA7EepUWjeF93Zu5",
-      isCompleted: true,
+      day: "Jum'at",
+      date: "26",
+      month: "December",
+      year: "2025",
+      time: "10.00 WIB s/d Selesai",
+      venue: "KUA Banuhampu Sungai Pua Kabupaten Agam",
+      mapsLink: "https://maps.app.goo.gl/xALBDwR4hAMYqeEU6",
+      isCompleted: false,
     },
     ngunduhMantu: {
-      title: "Ngunduh Mantu",
-      day: "Rabu",
-      date: "6",
-      month: "Agustus",
+      title: "Resepsi",
+      day: "Ahad",
+      date: "28",
+      month: "December",
       year: "2025",
-      time: "10.00 - 16.00 WIB",
-      venue: "Rumah Makan Bambu Oju Kota Tangerang",
-      mapsLink: "https://maps.app.goo.gl/hL1VcizWmmUzM32JA",
+      time: "10.00 WIB s/d Selesai",
+      venue: "Jl. Labuah Gadang Nagari Kubang Putiah Banuhampu Sungai Pua",
+      mapsLink: "https://maps.app.goo.gl/RmXYEFsiH5PYsLHJ6?g_st=ipc",
       isCompleted: false,
     },
     // Tanggal target untuk countdown (format: YYYY-MM-DD)
-    countdownTarget: "2025-08-06T10:00:00",
+    countdownTarget: "2025-12-17T10:00:00",
   },
 
   // === OPENING TEXT ===
   opening: {
-    eventType: "Resepsi Ngunduh Mantu",
+    eventType: "Wedding",
     bismillah: "Bismillahirrahmanirrahim",
     mainText:
-      "Dengan memohon rahmat dan ridho Allah Subhanahu wa Ta'ala, kami memohon kehadiran Bapak/Ibu/Saudara/i pada acara ngunduh mantu kami:",
+      "Dengan memohon rahmat dan ridho Allah Subhanahu wa Ta'ala, kami memohon kehadiran Bapak/Ibu/Saudara/i pada acara pernikahan kami:",
   },
 
   // === STORY / PERJALANAN CINTA ===
@@ -77,22 +77,22 @@ export const invitationData = {
     title: "Story of Our Journey",
     chapters: [
       {
-        year: "2022",
-        title: "The First Meeting",
+        year: "April 2025",
+        title: "Awal Pertemuan",
         description:
-          "We first met in Cairo during a Graphic Design Class organized by the Minangkabau Student Association. Daru was the mentor, and Cia was one of the participants. That's where everything began.",
+          "Tidak ada yang menyangka bahwa pertemuan kami pada awal April 2025 itu akan membawa kami pada suatu ikatan suatu hari nanti, semua sudah tersusun rapih oleh sang maha kuasa. Kita tidak bisa memilih kepada siapa kita akan jatuh cinta.",
       },
       {
-        year: "2023",
-        title: "A Growing Connection",
+        year: "2025",
+        title: "Menjalin Hubungan",
         description:
-          "As time passed, our bond grew stronger. Not only between us, but also between our families. With shared values and dreams, we decided to commit to a more serious journey together.",
+          "Katanya cinta dapat tumbuh dengan kebersamaan, seiring berjalannya waktu kami memutuskan untuk menjalin hubungan yang lebih serius.",
       },
       {
-        year: "2024",
-        title: "Engagement & Marriage",
+        year: "December 2025",
+        title: "Menikah",
         description:
-          'By His will, an unexpected meeting turned into a beautiful path toward a sacred union. We held our engagement in October 2024, and God willing, will celebrate our wedding in November. As Imam Ali ibn Abi Thalib once said: "What is meant for you will find its way to you."',
+          'Kehendak-Nya menuntun kamu pada sebuah pertemuan yang tak pernah disangka hingga akhirnya membawa kami pada sebuah ikatan suci. Bukan karena bertemu lalu berjodoh, tapi karena berjodoh maka kami dipertemukan. Kami memutuskan untuk mengikrarkan janji suci pernikahan kami.',
       },
     ],
   },
@@ -115,13 +115,13 @@ export const invitationData = {
         bankName: "BSI",
         bankLogo: "/images/bsi-logo.png",
         accountName: "Syazkia Lathiifa",
-        accountNumber: "007055456746",
+        accountNumber: "3603313510",
       },
       {
-        bankName: "BCA",
+        bankName: "DANA",
         bankLogo: "/images/bca-logo.png",
-        accountName: "Daru Fahmaa Muliawan",
-        accountNumber: "100598361895",
+        accountName: "Siska Nur Hendri",
+        accountNumber: "082172770953",
       },
     ],
   },
