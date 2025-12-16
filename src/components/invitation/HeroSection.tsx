@@ -3,7 +3,7 @@ import { invitationData } from "../../data/invitationData";
 import coverBg from "../../assets/1235.png"; 
 
 interface HeroSectionProps {
-  guestName?: string; // Prop ini biarin aja biar gak error di parent, meski gak dipake visualnya
+  guestName?: string;
 }
 
 const HeroSection = ({ guestName }: HeroSectionProps) => {
@@ -19,8 +19,7 @@ const HeroSection = ({ guestName }: HeroSectionProps) => {
           alt="Wedding Background"
           className="w-full h-full object-cover object-center"
         />
-        {/* Gradient Putih di bawah */}
-        <div className="absolute bottom-0 left-0 w-full h-[40vh] bg-gradient-to-t from-[#F9F7F2] via-[#F9F7F2]/90 to-transparent" />
+        {/* GRADASI PUTIH GUE HAPUS DISINI ❌ */}
       </div>
 
       {/* --- TOP CONTENT (JUDUL) --- */}
@@ -89,7 +88,7 @@ const HeroSection = ({ guestName }: HeroSectionProps) => {
                 duration: 1.5, 
                 repeat: Infinity, 
                 ease: "easeInOut",
-                delay: 0.2 // Biar geraknya agak telat dikit dari mouse
+                delay: 0.2 
               }}
             >
               Scroll Down
