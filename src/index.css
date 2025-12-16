@@ -4,7 +4,7 @@
 @font-face {
   font-family: 'South Paris';
   /* Perhatikan tanda kutip dua "..." biar spasi kebaca */
-  src: url("/SOUTH PARIS DEMO VERSION.OTF") format("opentype");
+  src: url("/SouthParis.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
