@@ -17,13 +17,13 @@ const GiftSection = () => {
       setCopiedIndex(index);
       toast({
         title: "Berhasil disalin!",
-        description: `Nomor rekening ${accountNumber} telah disalin ke clipboard.`,
+        description: `Nomor rekening telah disalin.`,
       });
       setTimeout(() => setCopiedIndex(null), 2000);
     } catch (err) {
       toast({
         title: "Gagal menyalin",
-        description: "Silakan salin nomor rekening secara manual.",
+        description: "Silakan salin secara manual.",
         variant: "destructive",
       });
     }
@@ -33,78 +33,77 @@ const GiftSection = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15 },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
   return (
     <section
       ref={ref}
-      className="relative py-20 md:py-28 px-4 md:px-6 bg-card overflow-hidden"
+      className="relative py-16 md:py-24 px-4 md:px-6 bg-background overflow-hidden"
     >
-      {/* Decorative corners */}
-      <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-primary/15" />
-      <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-primary/15" />
-
       <motion.div
-        className="relative z-10 max-w-2xl mx-auto"
+        className="relative z-10 max-w-lg mx-auto"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
         {/* Title */}
-        <motion.div className="text-center mb-10" variants={itemVariants}>
-          <div className="inline-flex items-center justify-center w-14 h-14 border border-primary/30 rounded-full mb-5 bg-background">
-            <Gift className="w-6 h-6 text-primary" />
+        <motion.div className="text-center mb-8" variants={itemVariants}>
+          <div className="inline-flex items-center justify-center w-12 h-12 border border-primary/30 mb-4">
+            <Gift className="w-5 h-5 text-primary" />
           </div>
-          <h2 className="font-display text-2xl md:text-3xl text-primary mb-3">
+          <h2 className="font-display text-2xl md:text-3xl text-primary mb-3 uppercase tracking-wide">
             {gift.title}
           </h2>
-          <p className="text-sm text-muted-foreground leading-relaxed max-w-md mx-auto">
+          <div className="divider-ornament mb-4">
+            <span className="w-1.5 h-1.5 rotate-45 bg-primary/30" />
+          </div>
+          <p className="text-sm text-muted-foreground leading-relaxed max-w-sm mx-auto">
             {gift.description}
           </p>
         </motion.div>
 
         {/* Bank accounts */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           {gift.accounts.map((account, index) => (
             <motion.div
               key={account.accountNumber}
-              className="bg-background border border-primary/15 p-5 md:p-6 rounded-xl"
+              className="bg-card p-5 border border-primary/15 relative"
               variants={itemVariants}
             >
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                {/* Bank info */}
+              <div className="absolute inset-2 border border-primary/5 pointer-events-none" />
+              
+              <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div className="text-center md:text-left">
-                  <p className="text-sm text-muted-foreground mb-1">
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
                     {account.bankName}
                   </p>
-                  <p className="text-sm text-foreground/80 mb-2">
+                  <p className="text-sm text-foreground/70 mb-1">
                     a/n {account.accountName}
                   </p>
-                  <p className="font-display text-xl text-primary tracking-wider">
+                  <p className="font-display text-lg text-primary tracking-wider">
                     {account.accountNumber}
                   </p>
                 </div>
 
-                {/* Copy button */}
                 <button
                   onClick={() => handleCopy(account.accountNumber, index)}
-                  className="flex items-center justify-center gap-2 px-5 py-2.5 border border-primary/30 text-primary text-sm rounded-full hover:bg-primary/10 transition-all duration-300 w-full md:w-auto"
+                  className="flex items-center justify-center gap-2 px-4 py-2 border border-primary/30 text-primary text-xs uppercase tracking-wider hover:bg-primary/10 transition-all duration-300"
                 >
                   {copiedIndex === index ? (
                     <>
-                      <Check className="w-4 h-4" />
+                      <Check className="w-3.5 h-3.5" />
                       Tersalin
                     </>
                   ) : (
                     <>
-                      <Copy className="w-4 h-4" />
+                      <Copy className="w-3.5 h-3.5" />
                       Salin
                     </>
                   )}

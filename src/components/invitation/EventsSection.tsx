@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { invitationData } from "@/data/invitationData";
-import { MapPin, Check } from "lucide-react";
+import { MapPin, Calendar, Clock } from "lucide-react";
 
 interface EventCardProps {
   event: {
@@ -24,39 +24,40 @@ const EventCard = ({ event, delay = 0 }: EventCardProps) => {
   return (
     <motion.div
       ref={ref}
-      className="relative bg-card border border-primary/15 p-6 md:p-8 text-center rounded-xl"
+      className="relative bg-background p-6 md:p-8 text-center"
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay }}
     >
-      {event.isCompleted && (
-        <div className="absolute top-4 right-4 flex items-center gap-1 text-xs text-primary/60">
-          <Check className="w-3 h-3" />
-          <span>Selesai</span>
-        </div>
-      )}
+      {/* Frame borders */}
+      <div className="absolute inset-0 border border-primary/20" />
+      <div className="absolute inset-2 border border-primary/10" />
 
-      <p className="font-display text-lg text-primary/60 mb-2">{event.day}</p>
-
-      <h3 className="font-display text-xl md:text-2xl text-primary mb-5">
+      <h3 className="font-display text-xl md:text-2xl text-primary mb-4 uppercase tracking-wide">
         {event.title}
       </h3>
 
-      <div className="flex items-center justify-center gap-3 mb-5">
-        <div className="text-center">
-          <p className="font-display text-sm text-foreground/60">{event.month}</p>
-        </div>
-        <div className="w-14 h-14 md:w-16 md:h-16 border border-primary/30 rounded-lg flex items-center justify-center bg-background">
-          <span className="font-display text-2xl md:text-3xl text-primary">{event.date}</span>
-        </div>
-        <div className="text-center">
-          <p className="font-display text-sm text-foreground/60">{event.year}</p>
-        </div>
+      <div className="flex items-center justify-center gap-1 text-muted-foreground mb-4">
+        <Calendar className="w-3.5 h-3.5" />
+        <span className="text-xs">{event.day}</span>
       </div>
 
-      <p className="text-primary font-medium text-sm mb-3">{event.time}</p>
+      {/* Date display */}
+      <div className="flex items-center justify-center gap-3 mb-4">
+        <span className="font-display text-sm text-foreground/60">{event.month}</span>
+        <div className="w-12 h-12 md:w-14 md:h-14 border-2 border-primary/30 flex items-center justify-center relative">
+          <div className="absolute inset-1 border border-primary/10" />
+          <span className="font-display text-xl md:text-2xl text-primary">{event.date}</span>
+        </div>
+        <span className="font-display text-sm text-foreground/60">{event.year}</span>
+      </div>
 
-      <p className="text-sm text-muted-foreground mb-5 max-w-xs mx-auto">
+      <div className="flex items-center justify-center gap-1 text-primary mb-4">
+        <Clock className="w-3.5 h-3.5" />
+        <span className="text-sm font-medium">{event.time}</span>
+      </div>
+
+      <p className="text-xs text-muted-foreground mb-5 max-w-xs mx-auto leading-relaxed">
         {event.venue}
       </p>
 
@@ -64,10 +65,10 @@ const EventCard = ({ event, delay = 0 }: EventCardProps) => {
         href={event.mapsLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground text-sm rounded-full hover:bg-primary/90 transition-all duration-300"
+        className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-primary text-primary text-xs uppercase tracking-wider hover:bg-primary hover:text-primary-foreground transition-all duration-300"
       >
-        <MapPin className="w-4 h-4" />
-        Menuju Lokasi
+        <MapPin className="w-3.5 h-3.5" />
+        Lihat Lokasi
       </a>
     </motion.div>
   );
@@ -75,17 +76,32 @@ const EventCard = ({ event, delay = 0 }: EventCardProps) => {
 
 const EventsSection = () => {
   const { events } = invitationData;
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
-    <section className="relative py-20 md:py-28 px-4 md:px-6 bg-background overflow-hidden">
-      {/* Decorative corners */}
-      <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-primary/20" />
-      <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-primary/20" />
+    <section
+      ref={ref}
+      className="relative py-16 md:py-24 px-4 md:px-6 bg-background overflow-hidden"
+    >
+      {/* Section title */}
+      <motion.div 
+        className="text-center mb-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="font-display text-2xl md:text-3xl text-primary uppercase tracking-wide mb-3">
+          Waktu & Tempat
+        </h2>
+        <div className="divider-ornament">
+          <span className="w-1.5 h-1.5 rotate-45 bg-primary/30" />
+        </div>
+      </motion.div>
 
-      <div className="relative z-10 max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+      <div className="relative z-10 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <EventCard event={events.akadNikah} delay={0} />
-          <EventCard event={events.ngunduhMantu} delay={0.2} />
+          <EventCard event={events.ngunduhMantu} delay={0.15} />
         </div>
       </div>
     </section>
