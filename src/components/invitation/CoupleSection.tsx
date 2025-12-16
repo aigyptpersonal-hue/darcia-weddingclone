@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { invitationData } from "../../data/invitationData"; // Import data lo
+import { invitationData } from "../../data/invitationData"; 
 import { Instagram } from "lucide-react";
 
-// IMPORT FOTO DARI ASSETS
-// (Pastikan file groom.png & bride.png ada di folder src/assets)
+// Import Foto Couple
 import groomPhoto from "../../assets/groom.png";
 import bridePhoto from "../../assets/bride.png";
 
@@ -37,24 +36,29 @@ const CoupleSection = () => {
         animate={inView ? "visible" : "hidden"}
       >
         
-        {/* --- 1. OPENING TEXT (Bismillah & Salam) --- */}
+        {/* --- 1. OPENING TEXT --- */}
         <motion.div className="text-center mb-16" variants={itemVariants}>
-          {/* Judul Salam (Sinera) */}
-          <h2 className="text-lg md:text-xl mb-4 tracking-wide font-bold" style={{ fontFamily: "'Sinera', serif" }}>
+          {/* Salam */}
+          <h2 className="text-lg md:text-xl mb-5 tracking-wide font-bold" style={{ fontFamily: "'Sinera', serif" }}>
             {opening.title}
           </h2>
           
-          {/* Bismillah (Font Arab/Serif) */}
-          <p className="text-2xl md:text-3xl mb-6 text-[#3A5A40]">
-            {opening.bismillah}
-          </p>
+          {/* BISMILLAH IMAGE (Ganti teks jadi gambar) */}
+          <div className="flex justify-center mb-6">
+            <img 
+              src="/Bismillah.png" 
+              alt="Bismillahirrahmanirrahim"
+              className="h-12 md:h-16 object-contain opacity-90" 
+              // Note: Kalau PNG lo warna hitam dan mau jadi hijau, bisa tambah class "sepia" atau filter CSS manual
+            />
+          </div>
 
           {/* Divider Simpel */}
           <div className="flex justify-center mb-6">
              <div className="w-16 h-[1px] bg-[#3A5A40]/30"></div>
           </div>
 
-          {/* Teks Pembuka (Sans) */}
+          {/* Teks Pembuka */}
           <p className="text-sm md:text-base text-[#3A5A40]/80 max-w-xl mx-auto leading-relaxed italic">
             "{opening.mainText}"
           </p>
@@ -63,36 +67,31 @@ const CoupleSection = () => {
         {/* --- 2. COUPLE GRID --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8 items-start relative">
           
-          {/* --- KARTU PERTAMA (Groom Key - Saat ini isinya SISKA) --- */}
+          {/* --- KARTU GROOM (Siska) --- */}
           <motion.div className="text-center flex flex-col items-center" variants={itemVariants}>
             <div className="relative w-48 h-64 md:w-56 md:h-72 mx-auto mb-6">
-              {/* Frame Foto Melengkung (Arch) */}
               <div className="absolute inset-0 border border-[#3A5A40]/30 rounded-t-[100px] rounded-b-[20px] translate-x-2 translate-y-2" />
               <motion.div 
                 className="absolute inset-0 rounded-t-[100px] rounded-b-[20px] overflow-hidden bg-gray-200 shadow-lg"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                {/* Image Source */}
                 <img 
-                  src={groomPhoto} // Pastikan ini foto yg bener di assets
+                  src={groomPhoto} 
                   alt={couple.groom.fullName}
                   className="w-full h-full object-cover"
                 />
               </motion.div>
             </div>
 
-            {/* Nama Panggilan (Sinera) */}
             <h3 className="text-4xl md:text-5xl text-[#3A5A40] mb-3" style={{ fontFamily: "'Sinera', serif" }}>
               {couple.groom.shortName}
             </h3>
 
-            {/* Nama Lengkap & Gelar */}
             <p className="font-bold text-xs tracking-widest uppercase text-[#3A5A40]/60 mb-4">
               {couple.groom.fullName}
             </p>
             
-            {/* Detail Orang Tua */}
             <div className="text-sm text-[#3A5A40]/80 space-y-1 leading-relaxed">
                 <p className="italic mb-1">{couple.groom.childOrder}</p>
                 <p className="font-semibold">{couple.groom.fatherName}</p>
@@ -100,7 +99,6 @@ const CoupleSection = () => {
                 <p className="font-semibold">{couple.groom.motherName}</p>
             </div>
 
-            {/* Instagram Button */}
             <a
               href={`https://${couple.groom.instagram}`}
               target="_blank"
@@ -112,25 +110,18 @@ const CoupleSection = () => {
             </a>
           </motion.div>
 
-          {/* --- SIMBOL DAN (&) --- */}
-          {/* Mobile: Muncul di tengah grid */}
-          <motion.div
-            className="flex md:hidden justify-center -my-8 z-10"
-            variants={itemVariants}
-          >
-            {/* Pake Font Sinera sesuai request */}
+          {/* --- SIMBOL & --- */}
+          <motion.div className="flex md:hidden justify-center -my-8 z-10" variants={itemVariants}>
             <span className="text-5xl text-[#3A5A40]" style={{ fontFamily: "'Sinera', serif" }}>&</span>
           </motion.div>
 
-          {/* Desktop: Absolute Center Overlay */}
           <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 opacity-10 pointer-events-none select-none">
              <span className="text-[12rem]" style={{ fontFamily: "'Sinera', serif" }}>&</span>
           </div>
 
-          {/* --- KARTU KEDUA (Bride Key - Saat ini isinya RIDHO) --- */}
+          {/* --- KARTU BRIDE (Ridho) --- */}
           <motion.div className="text-center flex flex-col items-center" variants={itemVariants}>
             <div className="relative w-48 h-64 md:w-56 md:h-72 mx-auto mb-6">
-               {/* Frame Foto Melengkung (Arah sebaliknya biar dinamis) */}
                <div className="absolute inset-0 border border-[#3A5A40]/30 rounded-t-[100px] rounded-b-[20px] -translate-x-2 translate-y-2" />
                <motion.div 
                 className="absolute inset-0 rounded-t-[100px] rounded-b-[20px] overflow-hidden bg-gray-200 shadow-lg"
@@ -145,17 +136,14 @@ const CoupleSection = () => {
               </motion.div>
             </div>
 
-            {/* Nama Panggilan (Sinera) */}
             <h3 className="text-4xl md:text-5xl text-[#3A5A40] mb-3" style={{ fontFamily: "'Sinera', serif" }}>
               {couple.bride.shortName}
             </h3>
             
-            {/* Nama Lengkap */}
             <p className="font-bold text-xs tracking-widest uppercase text-[#3A5A40]/60 mb-4">
               {couple.bride.fullName}
             </p>
 
-            {/* Detail Orang Tua */}
             <div className="text-sm text-[#3A5A40]/80 space-y-1 leading-relaxed">
                 <p className="italic mb-1">{couple.bride.childOrder}</p>
                 <p className="font-semibold">{couple.bride.fatherName}</p>
@@ -163,7 +151,6 @@ const CoupleSection = () => {
                 <p className="font-semibold">{couple.bride.motherName}</p>
             </div>
 
-            {/* Instagram Button */}
             <a
               href={`https://${couple.bride.instagram}`}
               target="_blank"
