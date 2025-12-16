@@ -114,7 +114,7 @@ export const invitationData = {
       {
         bankName: "BSI",
         bankLogo: "/images/bsi-logo.png",
-        accountName: "Syazkia Lathiifa",
+        accountName: "Siska Nur Hendri",
         accountNumber: "3603313510",
       },
       {
