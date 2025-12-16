@@ -10,7 +10,8 @@ const StorySection = () => {
   return (
     <section
       ref={ref}
-      className="relative py-20 px-4 md:px-6 bg-[#F9F7F2] overflow-hidden font-sans text-[#3A5A40]"
+      // UPDATE BACKGROUND: Gradient dari #F8F0E5 (akhir Events) ke #F9F7F2
+      className="relative py-20 px-4 md:px-6 bg-gradient-to-b from-[#F8F0E5] to-[#F9F7F2] overflow-hidden font-sans text-[#3A5A40]"
     >
       <div className="relative z-10 max-w-3xl mx-auto">
         
@@ -28,7 +29,6 @@ const StorySection = () => {
             {story.title.replace("Story of ", "")}
           </h2>
           
-          {/* Divider Simpel */}
           <div className="flex justify-center">
              <div className="w-16 h-[1px] bg-[#3A5A40]/30"></div>
           </div>
@@ -50,8 +50,9 @@ const StorySection = () => {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.2 }}
             >
-              {/* Dot Penanda (Heart Icon Kecil) */}
-              <div className="absolute left-4 md:left-1/2 -translate-x-1/2 mt-1.5 z-10 bg-[#F9F7F2] p-1">
+              {/* Dot Penanda */}
+              {/* Background dot-nya disesuaikan jadi transparan atau ngikutin gradient, gue set bg-transparent biar aman */}
+              <div className="absolute left-4 md:left-1/2 -translate-x-1/2 mt-1.5 z-10 bg-[#F8F0E5] rounded-full p-1 border border-[#3A5A40]/20">
                  <Heart className="w-3 h-3 text-[#3A5A40] fill-[#3A5A40]" />
               </div>
 
