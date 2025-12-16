@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { invitationData } from "@/data/invitationData";
+import { Heart } from "lucide-react";
 
 const StorySection = () => {
   const { story } = invitationData;
@@ -9,70 +10,63 @@ const StorySection = () => {
   return (
     <section
       ref={ref}
-      className="relative py-20 md:py-28 px-4 md:px-6 bg-card overflow-hidden"
+      className="relative py-16 md:py-24 px-4 md:px-6 bg-card overflow-hidden"
     >
-      {/* Decorative corners */}
-      <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-primary/15" />
-      <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-primary/15" />
+      {/* Frame border */}
+      <div className="absolute inset-6 md:inset-10 border border-primary/10 pointer-events-none" />
 
-      <div className="relative z-10 max-w-3xl mx-auto">
+      <div className="relative z-10 max-w-2xl mx-auto">
         {/* Title */}
         <motion.div
-          className="text-center mb-14"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
           <p className="text-xs tracking-elegant uppercase text-muted-foreground mb-2">
-            Story of
+            Our Story
           </p>
-          <h2 className="font-display text-2xl md:text-3xl text-primary">
+          <h2 className="font-display text-2xl md:text-3xl text-primary uppercase tracking-wide">
             {story.title.replace("Story of ", "")}
           </h2>
-          <div className="w-16 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto mt-4" />
+          <div className="divider-ornament mt-4">
+            <Heart className="w-3 h-3 text-primary/40 fill-primary/20" />
+          </div>
         </motion.div>
 
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/20 via-primary/40 to-primary/20 md:-translate-x-1/2" />
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-primary/15 md:-translate-x-1/2" />
 
           {/* Timeline items */}
           {story.chapters.map((chapter, index) => (
             <motion.div
               key={chapter.year}
-              className={`relative flex items-start gap-8 mb-14 last:mb-0 ${
+              className={`relative flex items-start gap-6 mb-10 last:mb-0 ${
                 index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               }`}
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              transition={{ duration: 0.8, delay: index * 0.15 }}
             >
               {/* Year dot */}
-              <div className="absolute left-4 md:left-1/2 w-3 h-3 bg-primary rounded-full -translate-x-1/2 mt-2 z-10" />
-
-              {/* Year label */}
-              <div className="hidden md:block absolute left-1/2 -translate-x-1/2 -top-6">
-                <span className="font-display text-lg text-primary/60">{chapter.year}</span>
-              </div>
+              <div className="absolute left-4 md:left-1/2 w-3 h-3 bg-primary/30 border-2 border-background -translate-x-1/2 mt-1.5 z-10" style={{ transform: 'rotate(45deg) translateX(-70%)' }} />
 
               {/* Content card */}
-              <div className={`ml-12 md:ml-0 md:w-[calc(50%-40px)] ${
-                index % 2 === 0 ? "md:text-right md:pr-8" : "md:text-left md:pl-8"
+              <div className={`ml-10 md:ml-0 md:w-[calc(50%-30px)] bg-background p-5 border border-primary/10 ${
+                index % 2 === 0 ? "md:text-right md:mr-auto" : "md:text-left md:ml-auto"
               }`}>
-                <span className="md:hidden font-display text-lg text-primary/60 block mb-2">
+                <span className="font-display text-sm text-primary/60 block mb-1">
                   {chapter.year}
                 </span>
-                <h3 className="font-display text-xl md:text-2xl text-primary mb-2">
+                <h3 className="font-display text-lg text-primary mb-2">
                   {chapter.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {chapter.description}
                 </p>
               </div>
-
-              {/* Empty space for alternating layout on desktop */}
-              <div className="hidden md:block md:w-[calc(50%-40px)]" />
             </motion.div>
           ))}
         </div>

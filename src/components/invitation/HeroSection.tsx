@@ -68,11 +68,11 @@ const HeroSection = ({ guestName }: HeroSectionProps) => {
 
         <motion.a
           href="#date"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm tracking-wide uppercase rounded-full hover:bg-primary/90 transition-all duration-300 shadow-gold"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground text-sm tracking-wide uppercase rounded-sm hover:bg-primary/90 transition-all duration-300 shadow-gold"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.6 }}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.02 }}
         >
           Save The Date
         </motion.a>

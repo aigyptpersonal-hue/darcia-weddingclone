@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { invitationData } from "@/data/invitationData";
+import { Heart } from "lucide-react";
 
 interface TimeLeft {
   days: number;
@@ -50,16 +51,16 @@ const CountdownSection = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15 },
+      transition: { staggerChildren: 0.1 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 0.7 } 
+      transition: { duration: 0.6 } 
     },
   };
 
@@ -67,32 +68,33 @@ const CountdownSection = () => {
     <section
       ref={ref}
       id="date"
-      className="relative py-20 md:py-28 px-4 md:px-6 bg-card overflow-hidden"
+      className="relative py-16 md:py-24 px-4 md:px-6 bg-card overflow-hidden"
     >
-      {/* Decorative corners */}
-      <div className="absolute top-8 left-8 w-16 h-16 border-l border-t border-primary/15" />
-      <div className="absolute bottom-8 right-8 w-16 h-16 border-r border-b border-primary/15" />
+      {/* Frame border decoration */}
+      <div className="absolute inset-6 md:inset-10 border border-primary/10 pointer-events-none" />
 
       <motion.div
-        className="relative z-10 max-w-3xl mx-auto text-center"
+        className="relative z-10 max-w-2xl mx-auto text-center"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
         {/* Title */}
-        <motion.div variants={itemVariants} className="mb-10">
-          <h2 className="font-display text-2xl md:text-3xl text-primary mb-3">
+        <motion.div variants={itemVariants} className="mb-8">
+          <p className="text-xs tracking-elegant uppercase text-muted-foreground mb-3">
             Menghitung Hari
-          </h2>
-          <div className="w-16 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent mx-auto" />
-          <p className="text-xs tracking-elegant uppercase text-muted-foreground mt-3">
-            Menuju Kebahagiaan
           </p>
+          <h2 className="font-display text-2xl md:text-3xl text-primary uppercase tracking-wide">
+            Menuju Kebahagiaan
+          </h2>
+          <div className="divider-ornament mt-4">
+            <Heart className="w-3 h-3 text-primary/40 fill-primary/20" />
+          </div>
         </motion.div>
 
         {/* Countdown boxes */}
         <motion.div
-          className="grid grid-cols-4 gap-2 md:gap-4 mb-10"
+          className="grid grid-cols-4 gap-2 md:gap-4 mb-8"
           variants={containerVariants}
         >
           {timeBlocks.map((block, index) => (
@@ -101,35 +103,32 @@ const CountdownSection = () => {
               className="relative"
               variants={itemVariants}
             >
-              <div className="bg-background border border-primary/20 p-3 md:p-5 rounded-xl">
+              <div className="bg-background border border-primary/15 p-3 md:p-4 relative">
+                {/* Inner frame */}
+                <div className="absolute inset-1 border border-primary/5 pointer-events-none" />
                 <motion.span 
-                  className="block font-display text-2xl md:text-4xl lg:text-5xl text-primary mb-1"
+                  className="block font-display text-2xl md:text-4xl text-primary mb-1"
                   key={block.value}
                   initial={{ scale: 1.1, opacity: 0.5 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.2 }}
                 >
                   {String(block.value).padStart(2, "0")}
                 </motion.span>
-                <span className="text-xs md:text-sm text-muted-foreground">
+                <span className="text-[10px] md:text-xs text-muted-foreground uppercase tracking-wider">
                   {block.label}
                 </span>
               </div>
-              {index < 3 && (
-                <span className="hidden md:block absolute top-1/2 -right-2 lg:-right-3 -translate-y-1/2 text-primary/30 font-display text-xl">
-                  :
-                </span>
-              )}
             </motion.div>
           ))}
         </motion.div>
 
         {/* Description */}
         <motion.p
-          className="text-sm text-muted-foreground max-w-lg mx-auto leading-relaxed px-4"
+          className="text-sm text-muted-foreground max-w-md mx-auto leading-relaxed"
           variants={itemVariants}
         >
-          Dengan memohon Ridho serta Rahmat Allah SWT, kami bermaksud menyelenggarakan acara pernikahan yang Insya Allah akan diselenggarakan pada:
+          Dengan memohon Ridho serta Rahmat Allah SWT, kami bermaksud menyelenggarakan acara pernikahan
         </motion.p>
       </motion.div>
     </section>
