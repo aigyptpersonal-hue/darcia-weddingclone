@@ -61,7 +61,7 @@ const CoupleSection = () => {
         </motion.div>
 
         {/* --- 2. COUPLE GRID --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-8 items-start relative">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 items-start relative">
           
           {/* --- KARTU PERTAMA (Data: Siska) --- */}
           <motion.div className="text-center flex flex-col items-center" variants={itemVariants}>
@@ -84,12 +84,8 @@ const CoupleSection = () => {
               {couple.groom.fullName}
             </h3>
             
-            {/* --- UPDATE: NAMA ORTU KIRI KANAN --- */}
             <div className="text-sm text-[#3A5A40]/80 flex flex-col items-center gap-1 leading-snug">
-                {/* Putra/Putri dari... */}
                 <p className="italic">{couple.groom.childOrder}</p>
-                
-                {/* Nama Bapak & Ibu Sebaris */}
                 <p className="font-semibold px-4">
                   {couple.groom.fatherName} & {couple.groom.motherName}
                 </p>
@@ -106,9 +102,18 @@ const CoupleSection = () => {
             </a>
           </motion.div>
 
-          {/* --- SIMBOL & --- */}
-          <motion.div className="flex md:hidden justify-center -my-8 z-10" variants={itemVariants}>
-            <span className="text-5xl text-[#3A5A40]" style={{ fontFamily: "'Sinera', serif" }}>&</span>
+          {/* --- SIMBOL & (MOBILE FOCUS) --- */}
+          {/* -my-6: Biar jaraknya gak terlalu jauh nyodok ke atas/bawah
+              text-7xl: Besar
+              text-[#3A5A40]/30: Transparan (Opacity 30%)
+          */}
+          <motion.div className="flex md:hidden justify-center -my-6 z-0" variants={itemVariants}>
+            <span 
+              className="text-7xl text-[#3A5A40]/30" 
+              style={{ fontFamily: "'Sinera', serif" }}
+            >
+              &
+            </span>
           </motion.div>
 
           <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 opacity-10 pointer-events-none select-none">
@@ -136,12 +141,8 @@ const CoupleSection = () => {
               {couple.bride.fullName}
             </h3>
 
-            {/* --- UPDATE: NAMA ORTU KIRI KANAN --- */}
             <div className="text-sm text-[#3A5A40]/80 flex flex-col items-center gap-1 leading-snug">
-                {/* Putra/Putri dari... */}
                 <p className="italic">{couple.bride.childOrder}</p>
-
-                {/* Nama Bapak & Ibu Sebaris */}
                 <p className="font-semibold px-4">
                   {couple.bride.fatherName} & {couple.bride.motherName}
                 </p>
