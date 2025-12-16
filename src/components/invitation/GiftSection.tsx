@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { invitationData } from "@/data/invitationData";
+import { invitationData } from "../../data/invitationData";
 import { Copy, Check, Gift } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -29,7 +29,6 @@ const GiftSection = () => {
     }
   };
 
-  // Helper buat pilih logo
   const getBankLogo = (bankName: string) => {
     const name = bankName.toLowerCase();
     if (name.includes("bsi")) return "/BSI.png";
@@ -53,7 +52,6 @@ const GiftSection = () => {
   return (
     <section
       ref={ref}
-      // BACKGROUND: Transisi dari #F8F0E5 (akhir Quran) ke #F9F7F2
       className="relative py-20 px-4 md:px-6 bg-gradient-to-b from-[#F8F0E5] to-[#F9F7F2] overflow-hidden font-sans text-[#3A5A40]"
     >
       <motion.div
@@ -73,7 +71,6 @@ const GiftSection = () => {
             {gift.title}
           </h2>
           
-          {/* Divider */}
           <div className="flex justify-center mb-4">
              <div className="w-16 h-[1px] bg-[#3A5A40]/30"></div>
           </div>
@@ -88,14 +85,12 @@ const GiftSection = () => {
           {gift.accounts.map((account, index) => (
             <motion.div
               key={account.accountNumber}
-              // STYLE: Arch Card (Rounded Top 50px)
               className="bg-white/60 backdrop-blur-sm border border-[#3A5A40]/10 p-6 rounded-t-[50px] rounded-b-[15px] shadow-sm relative overflow-hidden group"
               variants={itemVariants}
             >
               
               <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-center md:text-left">
                 
-                {/* Info Rekening */}
                 <div className="flex flex-col items-center md:items-start">
                   {/* Logo Bank */}
                   <div className="h-8 mb-3 flex items-center justify-center">
@@ -110,10 +105,12 @@ const GiftSection = () => {
                     )}
                   </div>
 
-                  {/* Nomor & Nama */}
-                  <p className="text-2xl md:text-3xl text-[#3A5A40] mb-1 tracking-wide" style={{ fontFamily: "'Sinera', serif" }}>
+                  {/* NOMOR REKENING (UPDATE: Pake Font Sans/Montserrat) */}
+                  <p className="text-2xl md:text-3xl text-[#3A5A40] mb-1 tracking-wide font-bold font-sans">
                     {account.accountNumber}
                   </p>
+                  
+                  {/* Nama Pemilik */}
                   <p className="text-sm text-[#3A5A40]/70 font-medium">
                     a.n {account.accountName}
                   </p>
