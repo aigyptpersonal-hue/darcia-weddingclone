@@ -1,17 +1,24 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { invitationData } from "../../data/invitationData"; 
-import closeBg from "../../assets/close.png"; 
+// REVISI: Ganti ke close2.png
+import closeBg from "../../assets/close2.png"; 
 
-const ClosingSection = () => {
-  const { closing, couple } = invitationData;
+interface ClosingSectionProps {
+  data?: any; // Slot untuk data dinamis dari Supabase
+}
+
+const ClosingSection = ({ data }: ClosingSectionProps) => {
+  // Logic Sakti: Prioritaskan data Supabase, jika kosong pakai invitationData
+  const activeData = data || invitationData;
+  const { closing, couple } = activeData;
+  
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 });
 
   return (
     <section
       ref={ref}
-      // BACKGROUND IMAGE: close.png full cover
-      // min-h-screen biar gambarnya minimal setinggi layar
+      // BACKGROUND IMAGE: close2.png full cover
       className="relative min-h-screen w-full bg-cover bg-center bg-no-repeat flex flex-col items-center pt-24 px-6 font-sans"
       style={{ 
         backgroundImage: `url(${closeBg})`,
@@ -20,7 +27,6 @@ const ClosingSection = () => {
     >
       
       {/* --- TRANSISI HALUS (GRADIENT OVERLAY) --- */}
-      {/* Ini kuncinya: Warna cream RSVP (#F8F0E5) memudar jadi transparan di atas gambar */}
       <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-[#F8F0E5] via-[#F8F0E5]/80 to-transparent z-0 pointer-events-none" />
 
       {/* --- KONTEN UTAMA --- */}
@@ -33,7 +39,7 @@ const ClosingSection = () => {
         
         {/* --- THANK YOU TEXT --- */}
         <p className="text-xs tracking-[0.3em] uppercase font-medium mb-6 opacity-90">
-          {closing.thankYouText || "THANKYOU"}
+          {closing.thankYouText || "THANK YOU"}
         </p>
 
         {/* --- COUPLE NAMES (SINERA) --- */}
@@ -44,8 +50,6 @@ const ClosingSection = () => {
         </h2>
 
       </motion.div>
-
-      {/* Footer "DC" & "Made by" SUDAH DIHAPUS */}
       
     </section>
   );
