@@ -5,9 +5,8 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  // INI KUNCI SAKTINYA BIAR GAK BLANK:
-  // Kita paksa semua aset (JS/CSS) diambil dari alamat asli repo undangan
-  base: 'https://darciasiskaridho.vercel.app/',
+  // Base URL untuk deployment - gunakan '/' untuk Vercel
+  base: '/',
 
   server: {
     host: "::",
