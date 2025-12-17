@@ -41,17 +41,16 @@ const Index = ({ customData }: { customData?: any }) => {
       
       {/* Cover Screen */}
       <AnimatePresence>
-        {!isOpen && <CoverScreen onOpen={handleOpenInvitation} guestName={guestName} />}
+        {/* UPDATED: Sekarang kita kirim 'data' ke CoverScreen */}
+        {!isOpen && <CoverScreen onOpen={handleOpenInvitation} guestName={guestName} data={data} />}
       </AnimatePresence>
 
       {/* Main Content */}
       {isOpen && (
         <>
           <main className="animate-fade-in">
-            {/* NOTE PENTING:
-               Komponen di bawah ini (Hero, Couple, dll) masih baca data lama.
-               Nanti setelah langkah ini, kita akan update mereka satu per satu 
-               biar bisa baca 'data' yang baru.
+            {/* NOTE: Komponen di bawah ini masih pakai data lama (hardcode).
+               Nanti pelan-pelan kita update satu per satu kayak CoverScreen tadi.
             */}
             <HeroSection guestName={guestName} />
             <CoupleSection />
