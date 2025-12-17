@@ -90,7 +90,7 @@ const CoverScreen = ({ onOpen, guestName, data }: CoverScreenProps) => {
 
               {/* Instruksi Kecil */}
               <p className="text-[9px] tracking-[0.2em] uppercase text-[#3A5A40]/70 mt-4 border-b border-[#3A5A40]/30 pb-1">
-                ( Ketuk Layar Untuk Membuka )
+                ( Buka Undangan )
               </p>
           </motion.div>
       </div>
