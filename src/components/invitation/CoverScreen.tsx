@@ -1,15 +1,16 @@
 import { motion } from "framer-motion";
 import { invitationData } from "@/data/invitationData";
-import heroBg from "@/assets/hero-bg.png"; 
+// REVISI 2: Ganti import background jadi 1235.png
+// Pastikan file '1235.png' sudah ada di folder 'src/assets/' di GitHub lo.
+import coverBg from "@/assets/1235.png"; 
 
 interface CoverScreenProps {
   onOpen: () => void;
   guestName?: string;
-  data?: any; // <-- 1. Kita tambahin slot buat nerima data dinamis
+  data?: any;
 }
 
 const CoverScreen = ({ onOpen, guestName, data }: CoverScreenProps) => {
-  // 2. LOGIC SAKTI: Prioritaskan data dari props (Supabase), kalau gak ada pake default
   const activeData = data || invitationData;
   const { couple } = activeData;
 
@@ -28,8 +29,9 @@ const CoverScreen = ({ onOpen, guestName, data }: CoverScreenProps) => {
       
       {/* --- LAYER 1: BACKGROUND --- */}
       <div className="absolute inset-0 z-0">
+        {/* REVISI 2: Gunakan variable coverBg yang baru */}
         <img 
-          src={heroBg} 
+          src={coverBg} 
           alt="Wedding Background"
           className="w-full h-full object-cover object-center"
         />
@@ -71,7 +73,8 @@ const CoverScreen = ({ onOpen, guestName, data }: CoverScreenProps) => {
       <div className="relative z-10 w-full pb-20 px-6 flex flex-col items-center text-center">
           
           <motion.div
-              className="w-full flex flex-col items-center animate-pulse"
+              // REVISI 1: 'animate-pulse' DIHAPUS BIAR GAK KEDAP-KEDIP
+              className="w-full flex flex-col items-center" 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8 }}
