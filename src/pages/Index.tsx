@@ -14,10 +14,14 @@ import ClosingSection from "@/components/invitation/ClosingSection";
 import MusicPlayer from "@/components/invitation/MusicPlayer";
 import { invitationData } from "@/data/invitationData";
 
-const Index = () => {
+// 1. Terima props 'customData' dari Invitation.tsx
+const Index = ({ customData }: { customData?: any }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchParams] = useSearchParams();
   const [guestName, setGuestName] = useState<string | undefined>();
+
+  // 2. LOGIC SAKTI: Pilih data Supabase (customData) atau Default (invitationData)
+  const data = customData || invitationData;
 
   useEffect(() => {
     const toParam = searchParams.get("to");
@@ -32,8 +36,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* SEO Meta */}
-      <title>{invitationData.meta.title}</title>
+      {/* 3. Title Tab Browser udah Dinamis! */}
+      <title>{data.meta.title}</title>
       
       {/* Cover Screen */}
       <AnimatePresence>
@@ -44,6 +48,11 @@ const Index = () => {
       {isOpen && (
         <>
           <main className="animate-fade-in">
+            {/* NOTE PENTING:
+               Komponen di bawah ini (Hero, Couple, dll) masih baca data lama.
+               Nanti setelah langkah ini, kita akan update mereka satu per satu 
+               biar bisa baca 'data' yang baru.
+            */}
             <HeroSection guestName={guestName} />
             <CoupleSection />
             <CountdownSection />
