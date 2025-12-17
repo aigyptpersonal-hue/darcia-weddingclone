@@ -1,25 +1,24 @@
 import { motion } from "framer-motion";
 import { invitationData } from "@/data/invitationData";
-// Pastikan hero-bg.png adalah gambar yang sama dengan yang dipakai di HeroSection (misal 1235.png kemarin)
-// Jika beda, sesuaikan path importnya.
 import heroBg from "@/assets/hero-bg.png"; 
 
 interface CoverScreenProps {
   onOpen: () => void;
   guestName?: string;
+  data?: any; // <-- 1. Kita tambahin slot buat nerima data dinamis
 }
 
-const CoverScreen = ({ onOpen, guestName }: CoverScreenProps) => {
-  // Kita cuma butuh data couple di sini
-  const { couple } = invitationData;
+const CoverScreen = ({ onOpen, guestName, data }: CoverScreenProps) => {
+  // 2. LOGIC SAKTI: Prioritaskan data dari props (Supabase), kalau gak ada pake default
+  const activeData = data || invitationData;
+  const { couple } = activeData;
+
   const displayName = guestName || "Tamu Undangan";
 
   return (
     <motion.section
-      // onClick ditaruh di sini agar seluruh layar bisa diklik
       onClick={onOpen}
       className="fixed inset-0 z-50 h-[100dvh] w-full flex flex-col justify-between items-center overflow-hidden bg-[#F9F7F2] font-sans cursor-pointer"
-      // Animasi keluar saat cover tertutup
       exit={{ 
         opacity: 0, 
         scale: 1.05, 
@@ -34,12 +33,10 @@ const CoverScreen = ({ onOpen, guestName }: CoverScreenProps) => {
           alt="Wedding Background"
           className="w-full h-full object-cover object-center"
         />
-        {/* Gradient Putih di bawah biar teks tamu kebaca jelas */}
         <div className="absolute bottom-0 left-0 w-full h-[45vh] bg-gradient-to-t from-[#F9F7F2] via-[#F9F7F2]/90 to-transparent" />
       </div>
 
       {/* --- LAYER 2: TOP CONTENT (JUDUL) --- */}
-      {/* pt-28: Posisi judul dari atas */}
       <div className="relative z-10 w-full pt-28 px-4 flex flex-col items-center text-center">
         
         {/* TEXT KECIL */}
@@ -58,11 +55,9 @@ const CoverScreen = ({ onOpen, guestName }: CoverScreenProps) => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="flex flex-col items-center w-full"
         >
-            {/* NAMA MEMPELAI (SINERA) */}
-            {/* Menggunakan flex-col biar nama groom, &, dan bride tersusun vertikal rapi */}
+            {/* NAMA MEMPELAI DINAMIS */}
             <h1 className="text-[3.8rem] leading-[1.1] text-[#3A5A40] drop-shadow-sm flex flex-col items-center mt-2" style={{ fontFamily: "'Sinera', serif" }}>
               <span className="block">{couple.groom.shortName}</span>
-              {/* Ampersand pake Sinera juga */}
               <span className="text-4xl my-1" style={{ fontFamily: "'Sinera', serif" }}>&</span>
               <span className="block">{couple.bride.shortName}</span>
             </h1>
@@ -73,11 +68,10 @@ const CoverScreen = ({ onOpen, guestName }: CoverScreenProps) => {
       <div className="flex-grow"></div>
 
       {/* --- LAYER 3: BOTTOM CONTENT (GREETING TAMU) --- */}
-      {/* pb-20: Jarak dari bawah */}
       <div className="relative z-10 w-full pb-20 px-6 flex flex-col items-center text-center">
           
           <motion.div
-              className="w-full flex flex-col items-center animate-pulse" // Efek kedip halus biar tau bisa diklik
+              className="w-full flex flex-col items-center animate-pulse"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8 }}
