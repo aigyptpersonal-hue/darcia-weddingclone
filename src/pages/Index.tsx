@@ -54,7 +54,7 @@ const Index = () => {
             <RSVPSection />
             <ClosingSection />
           </main>
-          <MusicPlayer autoPlay={true} />
+          <MusicPlayer />
         </>
       )}
     </div>

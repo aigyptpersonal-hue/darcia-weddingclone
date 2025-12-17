@@ -9,7 +9,7 @@ import NotFound from "./pages/NotFound";
 
 // 1. IMPORT MUSIC PLAYER
 // (Pastikan path-nya sesuai tempat lo nyimpen file MusicPlayer.tsx tadi)
-import MusicPlayer from "./components/common/MusicPlayer"; 
+import MusicPlayer from "./components/invitation/MusicPlayer"; 
 
 const queryClient = new QueryClient();
 
