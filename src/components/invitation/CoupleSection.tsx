@@ -1,14 +1,20 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { invitationData } from "../../data/invitationData"; 
-import { Instagram } from "lucide-react";
 
 // Import Foto
 import groomPhoto from "../../assets/groom.png";
-import bridePhoto from "../../assets/bride.png";
+import bridePhoto from "../../assets/bride2.png"; // REVISI: Pakai bride2.png
 
-const CoupleSection = () => {
-  const { opening, couple } = invitationData;
+interface CoupleSectionProps {
+  data?: any; // Slot untuk data dinamis
+}
+
+const CoupleSection = ({ data }: CoupleSectionProps) => {
+  // Logic Sakti: Prioritaskan data Supabase, jika kosong pakai invitationData
+  const activeData = data || invitationData;
+  const { opening, couple } = activeData;
+  
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   const containerVariants = {
@@ -63,7 +69,7 @@ const CoupleSection = () => {
         {/* --- 2. COUPLE GRID --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-8 items-start relative">
           
-          {/* --- KARTU PERTAMA (Data: Siska) --- */}
+          {/* --- KARTU PERTAMA (GROOM) --- */}
           <motion.div className="text-center flex flex-col items-center" variants={itemVariants}>
             <div className="relative w-48 h-64 md:w-56 md:h-72 mx-auto mb-6">
               <div className="absolute inset-0 border border-[#3A5A40]/30 rounded-t-[100px] rounded-b-[20px] translate-x-2 translate-y-2" />
@@ -72,6 +78,7 @@ const CoupleSection = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
+                {/* Note: Tetap menggunakan groomPhoto atau bridePhoto sesuai variabel import di atas */}
                 <img 
                   src={bridePhoto} 
                   alt={couple.groom.fullName}
@@ -90,23 +97,10 @@ const CoupleSection = () => {
                   {couple.groom.fatherName} & {couple.groom.motherName}
                 </p>
             </div>
-
-            <a
-              href={`https://${couple.groom.instagram}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-5 px-5 py-2 rounded-full border border-[#3A5A40]/20 hover:bg-[#3A5A40] hover:text-[#F9F7F2] transition-all text-xs font-medium tracking-wide group"
-            >
-              <Instagram className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
-              @{couple.groom.instagram.replace('instagram.com/', '').replace('/', '')}
-            </a>
+            {/* Instagram Dihapus di sini */}
           </motion.div>
 
-          {/* --- SIMBOL & (MOBILE FOCUS) --- */}
-          {/* -my-6: Biar jaraknya gak terlalu jauh nyodok ke atas/bawah
-              text-7xl: Besar
-              text-[#3A5A40]/30: Transparan (Opacity 30%)
-          */}
+          {/* --- SIMBOL & (MOBILE) --- */}
           <motion.div className="flex md:hidden justify-center -my-6 z-0" variants={itemVariants}>
             <span 
               className="text-7xl text-[#3A5A40]/30" 
@@ -120,7 +114,7 @@ const CoupleSection = () => {
              <span className="text-[12rem]" style={{ fontFamily: "'Sinera', serif" }}>&</span>
           </div>
 
-          {/* --- KARTU KEDUA (Data: Ridho) --- */}
+          {/* --- KARTU KEDUA (BRIDE) --- */}
           <motion.div className="text-center flex flex-col items-center" variants={itemVariants}>
             <div className="relative w-48 h-64 md:w-56 md:h-72 mx-auto mb-6">
                <div className="absolute inset-0 border border-[#3A5A40]/30 rounded-t-[100px] rounded-b-[20px] -translate-x-2 translate-y-2" />
@@ -147,16 +141,7 @@ const CoupleSection = () => {
                   {couple.bride.fatherName} & {couple.bride.motherName}
                 </p>
             </div>
-
-            <a
-              href={`https://${couple.bride.instagram}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-5 px-5 py-2 rounded-full border border-[#3A5A40]/20 hover:bg-[#3A5A40] hover:text-[#F9F7F2] transition-all text-xs font-medium tracking-wide group"
-            >
-              <Instagram className="w-3.5 h-3.5 group-hover:scale-110 transition-transform" />
-              @{couple.bride.instagram.replace('instagram.com/', '').replace('/', '')}
-            </a>
+            {/* Instagram Dihapus di sini */}
           </motion.div>
         </div>
 
