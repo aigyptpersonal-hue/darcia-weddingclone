@@ -1,33 +1,52 @@
 import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Volume2, VolumeX, Disc3 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Disc3, VolumeX, Music2 } from "lucide-react";
 
-interface MusicPlayerProps {
-  autoPlay?: boolean;
-}
-
-const MusicPlayer = ({ autoPlay = true }: MusicPlayerProps) => {
+const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  // --- FUNGSI 1: LOGIC AUTOPLAY & CLICK LISTENER ---
   useEffect(() => {
-    // Coba Autoplay saat load
-    if (autoPlay && audioRef.current) {
-      const playPromise = audioRef.current.play();
-      
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-          })
-          .catch(() => {
-            // Autoplay biasanya diblokir browser kalau belum ada interaksi user
-            setIsPlaying(false);
-          });
-      }
-    }
-  }, [autoPlay]);
+    const audio = audioRef.current;
+    if (!audio) return;
 
+    // 1. Coba Autoplay langsung pas load
+    const attemptPlay = async () => {
+      try {
+        await audio.play();
+        setIsPlaying(true);
+      } catch (err) {
+        // Kalau gagal (diblokir browser), set state jadi pause dulu
+        setIsPlaying(false);
+        console.log("Autoplay prevented by browser, waiting for interaction.");
+      }
+    };
+
+    attemptPlay();
+
+    // 2. Listener: Begitu user klik APAPUN di layar (misal tombol "Buka Undangan"), musik nyala
+    const handleUserInteraction = () => {
+      if (audio.paused) {
+        audio.play().then(() => {
+          setIsPlaying(true);
+        }).catch(e => console.error("Play failed:", e));
+      }
+      // Hapus listener biar gak jalan terus-terusan
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
+    };
+
+    document.addEventListener('click', handleUserInteraction);
+    document.addEventListener('touchstart', handleUserInteraction);
+
+    return () => {
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
+    };
+  }, []);
+
+  // --- FUNGSI 2: TOMBOL PLAY/PAUSE MANUAL ---
   const togglePlay = () => {
     if (audioRef.current) {
       if (isPlaying) {
@@ -41,48 +60,79 @@ const MusicPlayer = ({ autoPlay = true }: MusicPlayerProps) => {
 
   return (
     <>
-      {/* Pastikan file music.mp3 ada di folder PUBLIC */}
+      {/* Element Audio Tersembunyi */}
+      {/* Pastikan file music.mp3 ada di folder public */}
       <audio
         ref={audioRef}
+        src="/music.mp3" 
         loop
         preload="auto"
-        src="/music.mp3" 
       />
-      
+
+      {/* Tombol Floating */}
       <motion.button
         onClick={togglePlay}
-        // STYLE: Glassmorphism Cream + Hijau Minang
-        className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-[#F9F7F2]/80 backdrop-blur-md border border-[#3A5A40]/30 flex items-center justify-center text-[#3A5A40] hover:bg-[#3A5A40] hover:text-[#F9F7F2] transition-all duration-300 shadow-lg shadow-[#3A5A40]/20"
+        className={`fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500 shadow-xl border backdrop-blur-md ${
+           isPlaying 
+             ? "bg-[#F9F7F2]/90 border-[#3A5A40]/30 text-[#3A5A40] shadow-[#3A5A40]/20" 
+             : "bg-[#3A5A40] border-[#3A5A40] text-[#F9F7F2] shadow-md"
+        }`}
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1, duration: 0.3 }}
+        transition={{ delay: 1 }}
         whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        aria-label={isPlaying ? "Pause music" : "Play music"}
+        whileTap={{ scale: 0.9 }}
       >
-        {isPlaying ? (
-          // Icon muter dikit biar asik (Disc) atau Volume
-          <Disc3 className="w-5 h-5 animate-spin-slow" /> 
-        ) : (
-          <VolumeX className="w-5 h-5" />
-        )}
-        
-        {/* --- ANIMASI RING (GELOMBANG SUARA) --- */}
+        <AnimatePresence mode="wait">
+          {isPlaying ? (
+            <motion.div
+              key="playing"
+              initial={{ scale: 0, rotate: -90 }}
+              animate={{ scale: 1, rotate: 0 }}
+              exit={{ scale: 0, rotate: 90 }}
+              className="relative"
+            >
+               {/* Icon Muter (Piringan Hitam Style) */}
+               <Disc3 className="w-6 h-6 animate-spin-slow" />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="paused"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0 }}
+            >
+               <VolumeX className="w-5 h-5" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Efek Gelombang Suara (Visualizer) kalau lagi play */}
         {isPlaying && (
-          <>
-            <motion.span
-              className="absolute inset-0 rounded-full border border-[#3A5A40]/40"
-              animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeOut" }}
-            />
-            <motion.span
-              className="absolute inset-0 rounded-full border border-[#3A5A40]/20"
-              animate={{ scale: [1, 1.8], opacity: [0.3, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeOut", delay: 0.3 }}
-            />
-          </>
+          <div className="absolute inset-0 pointer-events-none">
+            <span className="absolute inset-0 rounded-full border border-[#3A5A40] opacity-40 animate-ping-slow"></span>
+            <span className="absolute inset-0 rounded-full border border-[#3A5A40] opacity-20 animate-ping-slower"></span>
+          </div>
         )}
       </motion.button>
+
+      {/* Custom CSS buat animasi muter & ping */}
+      <style>{`
+        .animate-spin-slow {
+          animation: spin 4s linear infinite;
+        }
+        .animate-ping-slow {
+          animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        .animate-ping-slower {
+          animation: ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+          animation-delay: 0.5s;
+        }
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+      `}</style>
     </>
   );
 };
