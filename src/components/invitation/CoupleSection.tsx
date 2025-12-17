@@ -39,7 +39,7 @@ const CoupleSection = () => {
         {/* --- 1. OPENING TEXT --- */}
         <motion.div className="text-center mb-16" variants={itemVariants}>
           <h2 className="text-lg md:text-xl mb-5 tracking-wide font-bold" style={{ fontFamily: "'Sinera', serif" }}>
-            {opening.title}
+            {opening.eventType}
           </h2>
           
           {/* BISMILLAH IMAGE */}
