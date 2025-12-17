@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
-
+import Invitation from "./pages/Invitation"; // <-- Ini file baru kita tadi
 
 const queryClient = new QueryClient();
 
@@ -17,9 +17,17 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Halaman Utama (Preview Default) */}
           <Route path="/" element={<Index />} />
+          
+          {/* Halaman Admin */}
           <Route path="/admin" element={<AdminPage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+
+          {/* Halaman Undangan Dinamis (Kabel Utama Kita) */}
+          {/* Taruh di sini, SEBELUM Route bintang (*) */}
+          <Route path="/:slug" element={<Invitation />} />
+
+          {/* Halaman 404 (Paling Bawah) */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
