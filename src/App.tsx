@@ -7,9 +7,6 @@ import Index from "./pages/Index";
 import AdminPage from "./pages/AdminPage";
 import NotFound from "./pages/NotFound";
 
-// 1. IMPORT MUSIC PLAYER
-// (Pastikan path-nya sesuai tempat lo nyimpen file MusicPlayer.tsx tadi)
-import MusicPlayer from "./components/invitation/MusicPlayer"; 
 
 const queryClient = new QueryClient();
 
@@ -19,10 +16,6 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        
-        {/* 2. PASANG PLAYER DISINI (Di luar Routes biar persistent) */}
-        <MusicPlayer />
-        
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/admin" element={<AdminPage />} />
